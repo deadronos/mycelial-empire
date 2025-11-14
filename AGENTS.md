@@ -2,11 +2,18 @@
 
 Shared guide for every autonomous contributor operating inside `mycelial-empire`. Use this document to understand responsibilities, guardrails, and how work flows through the Spec-Driven Workflow and Memory Bank.
 
+Also look at `.github/copilot-instructions.md` for AI assistant usage policies.
+
 ## Scope & Usage
 
 - Serves maintainers, human collaborators, and software agents who execute repository tasks.
 - Centralizes expectations for analyzing requests, producing designs, updating memory (`/memory/**`), and preparing handoffs/PR summaries.
 - Complements `.github/instructions/spec-driven-workflow-v1.instructions.md` and `.github/instructions/memory-bank.instructions.md`.
+- Decisions and updates should be logged in the relevant `memory/tasks/TASK###-*.md` file for traceability (if executing a task).
+- Decisions and updates should also be reflected in memory files like activeContext.md and progress.md to keep context current. 
+- High-level changes should be updated in memory/systemPatterns.md and memory/techContext.md as needed to reflect architectural or technical shifts.
+- Update memory/projectbrief.md if the project mission, scope, or success indicators change significantly.
+- Consider adding to change log at the end of this document for major agent updates or project shifts.
 
 ## Collaboration Workflow
 

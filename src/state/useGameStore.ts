@@ -28,6 +28,9 @@ const DEFAULT_UPGRADES: GameUpgrades = {
   synthesisLevel: 0,
 };
 
+let nodeCounter = 1;
+let edgeCounter = 1;
+
 interface SimulationInput {
   resources: ResourcePool;
   nodes: GraphNode[];
@@ -50,6 +53,7 @@ export interface GameStore extends GameStoreState {
   hydrate: (payload: SerializedGame) => void;
   reset: () => void;
 }
+
 
 const createStartingState = (): GameStoreState => {
   nodeCounter = 1;
@@ -356,9 +360,6 @@ const calculateFlowPressure = (
   const throughput = waterPerSec + carbonPerSec + nutrientsPerSec;
   return clamp(throughput / (edges.length * 6), 0, 1);
 };
-
-let nodeCounter = 1;
-let edgeCounter = 1;
 
 const createInitialNodes = (): GraphNode[] => [
   {

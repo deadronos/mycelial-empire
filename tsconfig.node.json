@@ -22,8 +22,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": [
+    "include": [
     "vite.config.ts",
-    "tailwind.config.ts"
+    "tailwind.config.ts",
+    "vitest.config.ts"
   ]
 }

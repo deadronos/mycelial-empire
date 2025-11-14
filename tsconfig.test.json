@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "types": ["vitest", "vite/client"],
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src", "tests", "**/*.{test,spec}.{ts,tsx,js,jsx}"]
+}

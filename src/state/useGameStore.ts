@@ -331,7 +331,7 @@ interface SimulationInput {
   upgrades: GameUpgrades;
 }
 
-const simulateTick = (state: SimulationInput) => {
+function simulateTick(state: SimulationInput) {
   const { nodes, edges, resources, upgrades } = state;
   const flowMultiplier = 1 + upgrades.hyphaeLevel * 0.35;
   let waterPerSec = 0;
@@ -396,7 +396,9 @@ const simulateTick = (state: SimulationInput) => {
   return { nextResources, stats };
 };
 
-const deriveStats = (input: SimulationInput): GameStats => simulateTick(input).stats;
+function deriveStats(input: SimulationInput): GameStats {
+  return simulateTick(input).stats;
+}
 
 const evolveEdges = (edges: GraphEdge[], pressure: number, upgrades: GameUpgrades) =>
   edges.map((edge) => {
@@ -421,19 +423,19 @@ const evolveEdges = (edges: GraphEdge[], pressure: number, upgrades: GameUpgrade
     };
   });
 
-const calculateFlowPressure = (
+function calculateFlowPressure(
   edges: GraphEdge[],
   waterPerSec: number,
   carbonPerSec: number,
   nutrientsPerSec: number
-) => {
+){
   if (!edges.length) {
     return 0;
   }
 
   const throughput = waterPerSec + carbonPerSec + nutrientsPerSec;
   return clamp(throughput / (edges.length * 6), 0, 1);
-};
+}
 
 // Node+edge helpers used for initial state and exploration
 

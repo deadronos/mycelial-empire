@@ -32,6 +32,15 @@ Additional scripts:
 src/
  ├─ App.tsx                   # Screen composition + HUD overlays
  ├─ graphics/GraphScene.tsx   # R3F renderer consuming Miniplex entities
+## Testing
+
+This repository uses Vitest + Testing Library for tests. Run the following commands:
+
+- Run tests once: `npm test` or `npm run test`
+- Run tests in watch mode: `npm run test:watch`
+- Run tests with coverage: `npm run test:coverage`
+
+Tests use `tsconfig.test.json` to load typing and test globals.
  ├─ state/useGameStore.ts     # Resources, nodes/edges, actions, tick loop
  ├─ state/useUiStore.ts       # Autosave prefs, dialogs, toasts, dev toggles
  ├─ hooks/                    # Autosave + hydration + ticker hooks

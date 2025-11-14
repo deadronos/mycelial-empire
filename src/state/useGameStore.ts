@@ -31,6 +31,79 @@ const DEFAULT_UPGRADES: GameUpgrades = {
 let nodeCounter = 1;
 let edgeCounter = 1;
 
+// Node + edge helpers (moved above starting state to avoid TDZ access)
+const labelForKind = (kind: GraphNode["kind"]): string => {
+  switch (kind) {
+    case "waterPocket":
+      return "Water Pocket";
+    case "carbonPocket":
+      return "Carbon Vein";
+    case "nutrientPocket":
+      return "Nutrient Cache";
+    case "junction":
+      return "Junction";
+    case "toxic":
+      return "Toxic Bloom";
+    default:
+      return "Node";
+  }
+};
+
+const createEdgeBetween = (fromNode: GraphNode, toNode: GraphNode): GraphEdge => {
+  const dx = toNode.position.x - fromNode.position.x;
+  const dy = toNode.position.y - fromNode.position.y;
+  const length = Math.hypot(dx, dy);
+
+  return {
+    id: `edge-${edgeCounter++}`,
+    from: fromNode.id,
+    to: toNode.id,
+    width: randomBetween(1.2, 2.4),
+    strain: clamp(0.4 + length / 200, 0.15, 0.9),
+    length,
+    status: "healthy",
+    flow: randomBetween(20, 60),
+  };
+};
+
+const createPocketNode = (kind: GraphNode["kind"], position: { x: number; y: number }, rate: number): GraphNode => ({
+  id: `node-${nodeCounter++}`,
+  kind,
+  label: labelForKind(kind),
+  position,
+  rate,
+  tier: 1,
+  capacity: 32,
+  integrity: 0.78,
+  discoveredAt: 0,
+  focus: kind === "waterPocket" ? "water" : kind === "carbonPocket" ? "carbon" : "nutrients",
+});
+
+const createInitialNodes = (): GraphNode[] => [
+  {
+    id: "heart",
+    kind: "heart",
+    label: "Heart (Core)",
+    position: { x: 0, y: 0 },
+    tier: 4,
+    integrity: 1,
+    discoveredAt: 0,
+  },
+  createPocketNode("waterPocket", { x: -24, y: 18 }, 2.6),
+  createPocketNode("carbonPocket", { x: 26, y: 12 }, 1.9),
+  createPocketNode("nutrientPocket", { x: -6, y: -28 }, 2.1),
+];
+
+const createInitialEdges = (nodes: GraphNode[]): GraphEdge[] =>
+  nodes
+    .filter((node) => node.id !== "heart")
+    .map((node) => createEdgeBetween(nodes[0], node));
+
+const getNumericSuffix = (id: string) => {
+  const maybeNumber = Number(id.split("-").pop());
+  return Number.isFinite(maybeNumber) ? maybeNumber : 0;
+};
+
 interface SimulationInput {
   resources: ResourcePool;
   nodes: GraphNode[];
@@ -70,6 +143,7 @@ const createStartingState = (): GameStoreState => {
     isPaused: false,
   };
 };
+
 
 const startingState = createStartingState();
 
@@ -361,72 +435,9 @@ const calculateFlowPressure = (
   return clamp(throughput / (edges.length * 6), 0, 1);
 };
 
-const createInitialNodes = (): GraphNode[] => [
-  {
-    id: "heart",
-    kind: "heart",
-    label: "Heart (Core)",
-    position: { x: 0, y: 0 },
-    tier: 4,
-    integrity: 1,
-    discoveredAt: 0,
-  },
-  createPocketNode("waterPocket", { x: -24, y: 18 }, 2.6),
-  createPocketNode("carbonPocket", { x: 26, y: 12 }, 1.9),
-  createPocketNode("nutrientPocket", { x: -6, y: -28 }, 2.1),
-];
+// Node+edge helpers used for initial state and exploration
 
-const createInitialEdges = (nodes: GraphNode[]): GraphEdge[] =>
-  nodes
-    .filter((node) => node.id !== "heart")
-    .map((node) => createEdgeBetween(nodes[0], node));
-
-const createEdgeBetween = (fromNode: GraphNode, toNode: GraphNode): GraphEdge => {
-  const dx = toNode.position.x - fromNode.position.x;
-  const dy = toNode.position.y - fromNode.position.y;
-  const length = Math.hypot(dx, dy);
-
-  return {
-    id: `edge-${edgeCounter++}`,
-    from: fromNode.id,
-    to: toNode.id,
-    width: randomBetween(1.2, 2.4),
-    strain: clamp(0.4 + length / 200, 0.15, 0.9),
-    length,
-    status: "healthy",
-    flow: randomBetween(20, 60),
-  };
-};
-
-const createPocketNode = (kind: GraphNode["kind"], position: { x: number; y: number }, rate: number): GraphNode => ({
-  id: `node-${nodeCounter++}`,
-  kind,
-  label: labelForKind(kind),
-  position,
-  rate,
-  tier: 1,
-  capacity: 32,
-  integrity: 0.78,
-  discoveredAt: 0,
-  focus: kind === "waterPocket" ? "water" : kind === "carbonPocket" ? "carbon" : "nutrients",
-});
-
-const labelForKind = (kind: GraphNode["kind"]): string => {
-  switch (kind) {
-    case "waterPocket":
-      return "Water Pocket";
-    case "carbonPocket":
-      return "Carbon Vein";
-    case "nutrientPocket":
-      return "Nutrient Cache";
-    case "junction":
-      return "Junction";
-    case "toxic":
-      return "Toxic Bloom";
-    default:
-      return "Node";
-  }
-};
+// helper functions for discovered nodes, etc
 
 const createDiscoveredNode = (tick: number): GraphNode => {
   const kind = weightedPick<GraphNode["kind"]>([
@@ -464,7 +475,4 @@ const createDiscoveredNode = (tick: number): GraphNode => {
   };
 };
 
-const getNumericSuffix = (id: string) => {
-  const maybeNumber = Number(id.split("-").pop());
-  return Number.isFinite(maybeNumber) ? maybeNumber : 0;
-};
+// getNumericSuffix defined above

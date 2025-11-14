@@ -88,6 +88,7 @@ flowchart TD
    - Contains individual markdown files for each task
    - Each task has its own dedicated file with format `TASKID-taskname.md`
    - Task IDs must remain unique across both `memory/tasks` and `memory/tasks/COMPLETED`; check both directories before allocating a number because completed tasks may be archived there.
+   - TASK IDs are sequential integers starting from 001(e.g., TASK001, TASK002), filename pattern TASKNNN-taskname.md
    - Includes task index file (`_index.md`) listing all tasks with their statuses
    - Preserves complete thought process and history for each task
 

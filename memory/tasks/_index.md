@@ -10,7 +10,7 @@
 
 ## Completed
 
-- None
+- [TASK001] Initialize AGENTS.md — Requirements, design, and AGENTS.md created
 
 ## Abandoned
 

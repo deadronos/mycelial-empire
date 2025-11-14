@@ -4,10 +4,12 @@ applyTo: '**'
 ---
 
 # Spec-Driven Workflow — Quick Loop
+Hint: you may use the "plan" agent for planning
 
 Hint: use memory folder ( look at .github/instructions/memory-bank.instructions.md for templates)
 use /memory/designs folder to store designs
 ensure design IDs stay unique across `/memory/designs` and `/memory/designs/COMPLETED`; check both locations before assigning a new number because completed designs may be archived there.
+Deisgn IDs are sequential integers starting from 001 (e.g., DES001, DES002), filename pattern DESNNN-designname.md
 use /memory/tasks folder to store task files
 ensure task IDs stay unique across `/memory/tasks` and `/memory/tasks/COMPLETED`; verify both directories before reserving a new number.
 

@@ -1,17 +1,18 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
-import { clamp, average } from "@/lib/numbers";
+
+import { syncGraphWorld } from "@/ecs/world";
+import { average,clamp } from "@/lib/numbers";
 import { jitter, pickOne, randomBetween, weightedPick } from "@/lib/random";
 import { serializeGameState } from "@/lib/serialization";
-import { syncGraphWorld } from "@/ecs/world";
 import {
-  INITIAL_RESOURCES,
-  RESOURCE_CAPS,
   type ActionResult,
-  type GraphEdge,
-  type GraphNode,
   type GameStats,
   type GameUpgrades,
+  type GraphEdge,
+  type GraphNode,
+  INITIAL_RESOURCES,
+  RESOURCE_CAPS,
   type ResourcePool,
   type SerializedGame,
 } from "@/types/graph";

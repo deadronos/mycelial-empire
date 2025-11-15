@@ -1,6 +1,6 @@
-import { RESOURCE_CAPS, type ResourceType } from "@/types/graph";
-import { useGameStore } from "@/state/useGameStore";
 import { formatNumber, percentFromFraction } from "@/lib/numbers";
+import { useGameStore } from "@/state/useGameStore";
+import { RESOURCE_CAPS, type ResourceType } from "@/types/graph";
 
 const RESOURCE_ORDER: ResourceType[] = ["sugar", "water", "carbon", "nutrients", "spores"];
 

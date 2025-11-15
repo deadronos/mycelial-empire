@@ -1,5 +1,5 @@
-import { useGameStore } from "@/state/useGameStore";
 import { formatNumber, percentFromFraction } from "@/lib/numbers";
+import { useGameStore } from "@/state/useGameStore";
 
 export const StatsPanel = () => {
   const stats = useGameStore((state) => state.stats);

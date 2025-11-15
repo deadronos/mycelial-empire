@@ -1,7 +1,9 @@
-import { render } from '@testing-library/react';
-import { describe, it, beforeEach, expect } from 'vitest';
-import { ResourceTray } from './ResourceTray';
+import { render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect,it } from 'vitest';
+
 import { useGameStore } from '@/state/useGameStore';
+
+import { ResourceTray } from './ResourceTray';
 
 describe('ResourceTray', () => {
   beforeEach(() => {
@@ -10,12 +12,12 @@ describe('ResourceTray', () => {
   });
 
   it('renders resource labels and network health', () => {
-    const { getByText } = render(<ResourceTray />);
+    render(<ResourceTray />);
     // labels
-    expect(getByText(/sugar/i)).toBeInTheDocument();
-    expect(getByText(/water/i)).toBeInTheDocument();
+    expect(screen.getByText(/sugar/i)).toBeInTheDocument();
+    expect(screen.getByText(/water/i)).toBeInTheDocument();
     // network health
-    expect(getByText(/Network Health/i)).toBeInTheDocument();
+    expect(screen.getByText(/Network Health/i)).toBeInTheDocument();
   });
 
   it('displays updated resource values when state changes', () => {
@@ -25,8 +27,8 @@ describe('ResourceTray', () => {
       stats: { ...state.stats, netSugar: 10.5, networkHealth: 0.34 },
     }));
 
-    const { getByText } = render(<ResourceTray />);
-    expect(getByText(/12345|12.?3?K/)).toBeTruthy();
-    expect(getByText(/Network Health/)).toBeInTheDocument();
+    render(<ResourceTray />);
+    expect(screen.getByText(/12345|12.?3?K/)).toBeInTheDocument();
+    expect(screen.getByText(/Network Health/)).toBeInTheDocument();
   });
 });

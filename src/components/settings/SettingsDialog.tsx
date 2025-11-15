@@ -1,9 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
-import { useUiStore } from "@/state/useUiStore";
-import { useGameStore } from "@/state/useGameStore";
-import { parseGameSave } from "@/lib/serialization";
+
 import { AUTOSAVE_KEY } from "@/hooks/useAutosave";
+import { parseGameSave } from "@/lib/serialization";
+import { useGameStore } from "@/state/useGameStore";
+import { useUiStore } from "@/state/useUiStore";
 
 export const SettingsDialog = () => {
   const open = useUiStore((state) => state.dialogs.settingsOpen);

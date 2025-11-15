@@ -1,8 +1,9 @@
-import { Compass, ActivitySquare, Settings2 } from "lucide-react";
-import { useCallback, type ReactNode } from "react";
-import { useGameStore, EXPLORE_COST, HYPHAE_UPGRADE_BASE_COST, NODE_UPGRADE_COST } from "@/state/useGameStore";
-import { useUiStore } from "@/state/useUiStore";
+import { ActivitySquare, Compass, Settings2 } from "lucide-react";
+import { type ReactNode,useCallback } from "react";
+
 import { formatNumber } from "@/lib/numbers";
+import { EXPLORE_COST, HYPHAE_UPGRADE_BASE_COST, NODE_UPGRADE_COST,useGameStore } from "@/state/useGameStore";
+import { useUiStore } from "@/state/useUiStore";
 
 export const ActionBar = () => {
   const explore = useGameStore((state) => state.explore);

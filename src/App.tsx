@@ -1,15 +1,15 @@
-import { useGameLoop } from "@/hooks/useGameLoop";
-import { useAutosave } from "@/hooks/useAutosave";
-import { useHydrateFromStorage } from "@/hooks/useHydrateFromStorage";
-import { GraphScene } from "@/graphics/GraphScene";
+import { ActionBar } from "@/components/actions/ActionBar";
 import { ResourceTray } from "@/components/hud/ResourceTray";
 import { StatsPanel } from "@/components/hud/StatsPanel";
-import { ActionBar } from "@/components/actions/ActionBar";
 import { SettingsDialog } from "@/components/settings/SettingsDialog";
 import { ToastHub } from "@/components/ui/ToastHub";
+import { GraphScene } from "@/graphics/GraphScene";
+import { useAutosave } from "@/hooks/useAutosave";
+import { useGameLoop } from "@/hooks/useGameLoop";
+import { useHydrateFromStorage } from "@/hooks/useHydrateFromStorage";
 import { useGameStore } from "@/state/useGameStore";
 
-function App() {
+const App = () => {
   useGameLoop();
   useAutosave();
   useHydrateFromStorage();

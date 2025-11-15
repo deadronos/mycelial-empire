@@ -1,5 +1,6 @@
 import { World } from "miniplex";
 import { useEntities } from "miniplex-react";
+
 import type { GraphEdge, GraphNode, GraphSnapshot } from "@/types/graph";
 
 export type GraphEntity = {

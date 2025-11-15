@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
+
+import { parseGameSave } from "@/lib/serialization";
 import { useGameStore } from "@/state/useGameStore";
 import { useUiStore } from "@/state/useUiStore";
-import { parseGameSave } from "@/lib/serialization";
+
 import { AUTOSAVE_KEY } from "./useAutosave";
 
 export const useHydrateFromStorage = () => {

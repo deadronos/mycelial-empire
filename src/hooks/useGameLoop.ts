@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useGameStore } from "@/state/useGameStore";
 
 const TICK_MS = 1_000;

@@ -1,10 +1,11 @@
-import { Canvas } from "@react-three/fiber";
 import { Line, OrthographicCamera } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { useMemo } from "react";
 import { Vector3 } from "three";
+
+import type { EdgeEntity, NodeEntity } from "@/ecs/world";
 import { useEdgeEntities, useNodeEntities } from "@/ecs/world";
 import { useUiStore } from "@/state/useUiStore";
-import type { EdgeEntity, NodeEntity } from "@/ecs/world";
 
 const POSITION_SCALE = 0.2;
 
@@ -66,20 +67,21 @@ const EdgesLayer = () => {
 
 const HyphaeEdge = ({ entity }: { entity: EdgeEntity }) => {
   const { edge } = entity;
-  if (!edge.fromNode || !edge.toNode) {
-    return null;
-  }
-
   const fromNode = edge.fromNode;
   const toNode = edge.toNode;
 
   const points = useMemo(() => {
+    if (!fromNode || !toNode) return [] as Vector3[];
     const from = toVec3(fromNode, -0.5);
     const to = toVec3(toNode, -0.5);
     const mid = from.clone().add(to).multiplyScalar(0.5);
     mid.z -= 0.2;
     return [from, mid, to];
   }, [fromNode, toNode]);
+
+  if (!fromNode || !toNode || points.length === 0) {
+    return null;
+  }
 
   const color =
     edge.status === "decaying" ? "#fb7185" : edge.status === "strained" ? "#fbbf24" : "#38bdf8";

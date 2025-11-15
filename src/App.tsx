@@ -17,28 +17,39 @@ const App = () => {
   const tick = useGameStore((state) => state.tick);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-50">
+    <div className="min-h-screen bg-[#050609] text-slate-50 font-mono">
       <SettingsDialog />
       <ToastHub />
-      <main className="relative h-screen overflow-hidden">
-        <GraphScene />
-        <div className="noise-overlay" />
-        <div className="pointer-events-none absolute inset-0">
-          <div className="pointer-events-auto absolute left-8 top-6">
-            <ResourceTray />
+      
+      {/* Top resource bar */}
+      <header className="flex items-center justify-between px-4 py-2 border-b border-slate-800 bg-gradient-to-r from-slate-900/80 via-slate-950/80 to-slate-900/80 backdrop-blur">
+        <ResourceTray />
+        <div className="flex items-center gap-2 text-xs text-slate-400">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(52,211,153,0.7)]" />
+          <span>Network stable</span>
+          <span className="ml-2 text-slate-500">Tick {tick.toLocaleString()}</span>
+        </div>
+      </header>
+
+      {/* Main content area */}
+      <main className="flex h-[calc(100vh-52px)] overflow-hidden">
+        {/* Left: Graph + actions */}
+        <div className="flex-1 flex flex-col">
+          {/* Graph area */}
+          <div className="relative flex-1 m-3 rounded-2xl bg-gradient-to-b from-slate-900 via-slate-950 to-black border border-slate-800 shadow-[0_0_40px_rgba(15,23,42,0.8)] overflow-hidden">
+            <GraphScene />
           </div>
-          <div className="pointer-events-auto absolute right-8 top-6">
-            <StatsPanel />
-          </div>
-          <div className="pointer-events-auto absolute left-1/2 top-8 -translate-x-1/2">
-            <div className="rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 px-4 py-1 text-[0.65rem] uppercase tracking-[0.3em] text-fuchsia-200">
-              Tick {tick.toLocaleString()}
-            </div>
-          </div>
-          <div className="pointer-events-auto absolute left-8 bottom-10">
+
+          {/* Action bar */}
+          <div className="px-3 pb-3">
             <ActionBar />
           </div>
         </div>
+
+        {/* Right: Stats sidebar */}
+        <aside className="w-64 border-l border-slate-800 bg-slate-950/90 backdrop-blur-sm">
+          <StatsPanel />
+        </aside>
       </main>
     </div>
   );

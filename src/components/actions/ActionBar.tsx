@@ -1,17 +1,17 @@
-import { ActivitySquare, Compass, Settings2 } from "lucide-react";
-import { type ReactNode,useCallback } from "react";
+import { Settings2 } from "lucide-react";
+import { useCallback } from "react";
 
-import { formatNumber } from "@/lib/numbers";
-import { EXPLORE_COST, HYPHAE_UPGRADE_BASE_COST, NODE_UPGRADE_COST,useGameStore } from "@/state/useGameStore";
+import { useGameStore } from "@/state/useGameStore";
 import { useUiStore } from "@/state/useUiStore";
 
 export const ActionBar = () => {
   const explore = useGameStore((state) => state.explore);
   const upgradeHyphae = useGameStore((state) => state.upgradeHyphae);
   const upgradeBestNode = useGameStore((state) => state.upgradeBestNode);
-  const hyphaeLevel = useGameStore((state) => state.upgrades.hyphaeLevel);
   const setSettingsOpen = useUiStore((state) => state.setSettingsOpen);
   const pushToast = useUiStore((state) => state.pushToast);
+
+  const setLatestMessage = useUiStore((state) => state.setLatestMessage);
 
   const runAction = useCallback(
     (action: () => { ok: boolean; message: string }, title: string) => {
@@ -21,57 +21,66 @@ export const ActionBar = () => {
         description: outcome.message,
         intent: outcome.ok ? "success" : "error",
       });
+      setLatestMessage(outcome.message);
     },
-    [pushToast]
+    [pushToast, setLatestMessage]
   );
 
   return (
-    <div className="flex items-center gap-3 rounded-full border border-slate-800/70 bg-slate-950/80 px-4 py-3">
+    <div className="flex flex-wrap items-center gap-2">
       <ActionButton
-        icon={<Compass className="h-4 w-4" />}
+        icon="🔍"
         label="Explore"
-        hint={`-${formatNumber(EXPLORE_COST)} sugar`}
+        hotkey="E"
         onClick={() => runAction(explore, "Exploration")}
       />
       <ActionButton
-        icon={<ActivitySquare className="h-4 w-4" />}
-        label="Widen Hyphae"
-        hint={`-${formatNumber(HYPHAE_UPGRADE_BASE_COST * (hyphaeLevel + 1))} sugar`}
+        icon="⬆️"
+        label="Upgrade Hyphae"
+        hotkey="U"
         onClick={() => runAction(upgradeHyphae, "Hyphae upgrade")}
       />
       <ActionButton
-        icon={<ActivitySquare className="h-4 w-4 rotate-45" />}
+        icon="🍄"
         label="Tune Node"
-        hint={`-${formatNumber(NODE_UPGRADE_COST)}+ sugar`}
+        hotkey="N"
         onClick={() => runAction(upgradeBestNode, "Node tuning")}
+        secondary
       />
       <button
         type="button"
         onClick={() => setSettingsOpen(true)}
-        className="ml-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-800/80 bg-slate-900/60 text-slate-300 transition hover:text-white"
+        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-700 text-slate-300 bg-slate-900/70 hover:bg-slate-800/80 text-xs transition"
         aria-label="Open settings"
       >
-        <Settings2 className="h-4 w-4" />
+        <Settings2 className="h-3.5 w-3.5" />
+        <span>Settings</span>
       </button>
     </div>
   );
 };
 
 interface ActionButtonProps {
-  icon: ReactNode;
+  icon: string;
   label: string;
-  hint: string;
+  hotkey: string;
   onClick: () => void;
+  secondary?: boolean;
 }
 
-const ActionButton = ({ icon, label, hint, onClick }: ActionButtonProps) => (
+const ActionButton = ({ icon, label, hotkey, onClick, secondary }: ActionButtonProps) => (
   <button
     type="button"
     onClick={onClick}
-    className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-xs text-emerald-100 shadow-[0_0_20px_rgba(16,185,129,0.35)] transition hover:bg-emerald-500/20"
+    className={
+      "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs transition " +
+      (secondary
+        ? "border-slate-700 text-slate-300 bg-slate-900/70 hover:bg-slate-800/80"
+        : "border-emerald-500/70 text-emerald-100 bg-emerald-600/20 hover:bg-emerald-500/25 shadow-[0_0_12px_rgba(16,185,129,0.4)]")
+    }
   >
-    {icon}
-    <span className="font-semibold uppercase tracking-wide">{label}</span>
-    <span className="text-[0.65rem] text-emerald-200">{hint}</span>
+    <span>{icon}</span>
+    <span>{label}</span>
+    <span className="text-[0.6rem] text-slate-400 ml-1">[{hotkey}]</span>
   </button>
 );

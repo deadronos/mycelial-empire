@@ -24,20 +24,16 @@ export const ResourceTray = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2 text-xs text-slate-100">
+    <div className="flex gap-4 text-xs">
       {RESOURCE_ORDER.map((type) => (
         <ResourcePill
           key={type}
           label={type}
           value={resources[type]}
-          perSecond={perSecondMap[type] ?? 0}
           cap={RESOURCE_CAPS[type]}
           gradient={ACCENTS[type]}
         />
       ))}
-      <div className="text-[0.7rem] text-slate-400">
-        Network Health: <span className="text-emerald-300">{percentFromFraction(stats.networkHealth)}</span>
-      </div>
     </div>
   );
 };
@@ -45,28 +41,22 @@ export const ResourceTray = () => {
 interface ResourcePillProps {
   label: string;
   value: number;
-  perSecond: number;
   cap: number;
   gradient: string;
 }
 
-const ResourcePill = ({ label, value, perSecond, cap, gradient }: ResourcePillProps) => {
+const ResourcePill = ({ label, value, cap, gradient }: ResourcePillProps) => {
   const pct = Math.min(100, (value / cap) * 100);
-  const isPositive = perSecond >= 0;
 
   return (
-    <div className="min-w-[220px] rounded-2xl border border-slate-800/80 bg-slate-950/70 px-4 py-3 shadow-panel">
-      <div className="flex items-baseline justify-between gap-2 uppercase tracking-wide">
-        <span className="text-[0.65rem] text-slate-500">{label}</span>
-        <span className="text-sm text-slate-50">{formatNumber(value)}</span>
-        <span className="text-[0.65rem] text-slate-500">/ {formatNumber(cap)}</span>
+    <div className="relative px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/70 shadow-inner flex flex-col">
+      <div className="flex items-baseline gap-2">
+        <span className="text-[0.65rem] uppercase tracking-wide text-slate-400">{label}</span>
+        <span className="text-xs text-slate-50">{formatNumber(value)}</span>
+        <span className="text-[0.6rem] text-slate-500">/ {formatNumber(cap)}</span>
       </div>
-      <div className="mt-2 h-1.5 w-full rounded-full bg-slate-800/80">
-        <div className={`h-full rounded-full bg-gradient-to-r ${gradient}`} style={{ width: `${pct}%` }} />
-      </div>
-      <div className="mt-1 text-[0.65rem] text-slate-400">
-        {isPositive ? "+" : ""}
-        {formatNumber(perSecond)} /s
+      <div className="mt-0.5 h-1 w-full rounded-full bg-slate-800 overflow-hidden">
+        <div className={`h-full bg-gradient-to-r ${gradient}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
   );

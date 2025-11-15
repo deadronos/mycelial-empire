@@ -73,7 +73,7 @@ const ResourcePill = ({ label, value, perSecond, cap, gradient }: ResourcePillPr
   const isPositive = perSecond >= 0;
 
   return (
-    <div className="relative flex min-w-[200px] flex-col gap-2 rounded-full border border-slate-800/70 bg-slate-950/80 px-5 py-3 shadow-[0_0_24px_rgba(15,23,42,0.65)] backdrop-blur">
+    <div className="relative flex min-w-[120px] sm:min-w-[200px] flex-col gap-2 rounded-full border border-slate-800/70 bg-slate-950/80 px-5 py-3 shadow-[0_0_24px_rgba(15,23,42,0.65)] backdrop-blur">
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <div className="text-[0.6rem] uppercase tracking-[0.3em] text-slate-400">{label}</div>
         <div className="flex items-baseline gap-2 text-sm text-slate-100">

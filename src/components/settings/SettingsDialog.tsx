@@ -60,7 +60,7 @@ export const SettingsDialog = () => {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-slate-950/60 backdrop-blur" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-slate-800/80 bg-slate-950/95 p-6 shadow-panel">
+        <Dialog.Content className="fixed left-1/2 top-1/2 w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-slate-800/80 bg-slate-950/95 p-6 shadow-panel z-[70]">
           <Dialog.Title className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
             Colony Settings
           </Dialog.Title>

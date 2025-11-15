@@ -81,7 +81,7 @@ export const ActionBar = () => {
   );
 
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-[28px] border border-slate-900/70 bg-slate-950/75 px-4 py-4 shadow-[0_20px_60px_rgba(2,6,23,0.6)] backdrop-blur">
+    <div className="flex flex-wrap items-center gap-3 rounded-[28px] border border-white/6 bg-white/4 bg-clip-padding px-4 py-4 shadow-[0_20px_60px_rgba(2,6,23,0.45)] backdrop-blur-md text-slate-50">
       <div className="flex flex-1 flex-wrap gap-3">
         {actions.map((action) => (
           <ActionButton
@@ -105,7 +105,7 @@ export const ActionBar = () => {
       <button
         type="button"
         onClick={() => setSettingsOpen(true)}
-        className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-800/70 bg-slate-900/70 text-slate-300 transition hover:text-white"
+        className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/6 bg-white/4 text-slate-300 transition hover:text-white"
         aria-label="Open settings"
       >
         <Settings2 className="h-5 w-5" />
@@ -126,18 +126,18 @@ interface ActionButtonProps {
 const ActionButton = ({ icon, label, description, hint, onClick, tone }: ActionButtonProps) => {
   const toneStyles =
     tone === "primary"
-      ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-100 hover:bg-emerald-500/25"
-      : "border-slate-700/70 bg-slate-900/70 text-slate-200 hover:bg-slate-800/80";
+      ? "border-emerald-500/60 bg-emerald-500/12 text-emerald-100 hover:bg-emerald-500/20 backdrop-blur-sm"
+      : "border-white/6 bg-white/3 text-slate-200 hover:bg-white/6 backdrop-blur-sm";
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`group flex min-w-[200px] flex-1 flex-col gap-2 rounded-3xl border px-4 py-3 text-left shadow-[0_12px_30px_rgba(15,23,42,0.45)] transition ${toneStyles}`}
+      className={`group flex min-w-[120px] sm:min-w-[200px] flex-1 flex-col gap-2 rounded-3xl border px-4 py-3 text-left shadow-[0_12px_30px_rgba(15,23,42,0.45)] transition ${toneStyles}`}
     >
       <div className="flex items-center justify-between text-[0.65rem] uppercase tracking-[0.3em]">
         <span className="flex items-center gap-2 text-slate-100">
-          <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-current/30 bg-black/30 text-slate-200">
+          <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/6 bg-white/6 text-slate-200">
             {icon}
           </span>
           {label}

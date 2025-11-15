@@ -11,13 +11,12 @@ describe('ResourceTray', () => {
     useGameStore.getState().reset();
   });
 
-  it('renders resource labels and network health', () => {
+  it('renders resource labels', () => {
     render(<ResourceTray />);
     // labels
     expect(screen.getByText(/sugar/i)).toBeInTheDocument();
     expect(screen.getByText(/water/i)).toBeInTheDocument();
-    // network health
-    expect(screen.getByText(/Network Health/i)).toBeInTheDocument();
+    // network health is in the app header, not ResourceTray; ResourceTray only shows resources
   });
 
   it('displays updated resource values when state changes', () => {
@@ -29,6 +28,6 @@ describe('ResourceTray', () => {
 
     render(<ResourceTray />);
     expect(screen.getByText(/12345|12.?3?K/)).toBeInTheDocument();
-    expect(screen.getByText(/Network Health/)).toBeInTheDocument();
+    // network health is tested elsewhere; ResourceTray shows updated resources only
   });
 });

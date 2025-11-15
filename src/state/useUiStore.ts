@@ -24,6 +24,7 @@ interface UiState {
     showGridOverlay: boolean;
   };
   toasts: ToastMessage[];
+  leftDrawerOpen: boolean;
   setSettingsOpen: (open: boolean) => void;
   setAutosaveEnabled: (enabled: boolean) => void;
   setAutosaveInterval: (milliseconds: number) => void;
@@ -32,6 +33,7 @@ interface UiState {
   dismissToast: (id: string) => void;
   markAutosaved: () => void;
   toggleGridOverlay: () => void;
+  setLeftDrawerOpen: (open: boolean) => void;
 }
 
 const createId = () => {
@@ -56,6 +58,7 @@ export const useUiStore = create<UiState>((set) => ({
     showGridOverlay: false,
   },
   toasts: [],
+  leftDrawerOpen: false,
   setSettingsOpen: (settingsOpen) => set((state) => ({ dialogs: { ...state.dialogs, settingsOpen } })),
   setAutosaveEnabled: (enabled) => set((state) => ({ autosave: { ...state.autosave, enabled } })),
   setAutosaveInterval: (intervalMs) =>
@@ -79,4 +82,5 @@ export const useUiStore = create<UiState>((set) => ({
     set((state) => ({ autosave: { ...state.autosave, lastSavedAt: Date.now() } })),
   toggleGridOverlay: () =>
     set((state) => ({ devtools: { ...state.devtools, showGridOverlay: !state.devtools.showGridOverlay } })),
+  setLeftDrawerOpen: (open) => set(() => ({ leftDrawerOpen: open })),
 }));

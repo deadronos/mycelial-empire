@@ -14,10 +14,16 @@ const toVec3 = (node: NodeEntity["node"], elevation = 0) =>
 
 export const GraphScene = () => {
   const showGrid = useUiStore((state) => state.devtools.showGridOverlay);
+  const maxDpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 1;
 
   return (
     <div className="h-full w-full">
-      <Canvas orthographic dpr={[1, 1.5]} className="bg-transparent">
+      <Canvas
+        orthographic
+        dpr={[1, maxDpr]}
+        className="bg-transparent w-full h-full"
+        style={{ width: "100%", height: "100%" }}
+      >
         <OrthographicCamera makeDefault position={[0, 0, 60]} zoom={12} />
         <color attach="background" args={["#020617"]} />
         <ambientLight intensity={0.6} />

@@ -5,6 +5,7 @@ import {
   AlertTriangle,
   ArrowUpCircle,
   BadgeCheck,
+  Crown,
   Flame,
   Leaf,
   Map,
@@ -32,9 +33,12 @@ type NodeType =
   | "nutrient"
   | "junction"
   | "ancient"
+  | "enzyme"
   | "toxic"
   | "rival"
-  | "spring";
+  | "spring"
+  | "artery"
+  | "spore";
 
 interface Node {
   id: string;
@@ -59,6 +63,19 @@ interface Edge {
   reinforced?: boolean;
 }
 
+interface PrestigeUpgrade {
+  id:
+    | "rich-mycelium"
+    | "tensile-hyphae"
+    | "enzyme-membrane"
+    | "fermentation"
+    | "scent-trails"
+    | "spore-alchemy";
+  name: string;
+  description: string;
+  cost: number;
+}
+
 interface Resources {
   sugar: number;
   water: number;
@@ -66,6 +83,45 @@ interface Resources {
   nutrients: number;
   spores: number;
 }
+
+const prestigeUpgrades: PrestigeUpgrade[] = [
+  {
+    id: "rich-mycelium",
+    name: "Rich Mycelium",
+    description: "+20% yield from every pocket and processor.",
+    cost: 3,
+  },
+  {
+    id: "tensile-hyphae",
+    name: "Tensile Hyphae",
+    description: "Edge capacity grows sturdier, easing clog risk.",
+    cost: 4,
+  },
+  {
+    id: "enzyme-membrane",
+    name: "Enzyme Membrane",
+    description: "Toxic soil drains less sugar and recovers faster.",
+    cost: 4,
+  },
+  {
+    id: "fermentation",
+    name: "Fermentation Vats",
+    description: "Carbon + Water conversion yields +25% sugar.",
+    cost: 5,
+  },
+  {
+    id: "scent-trails",
+    name: "Scent Trails",
+    description: "Exploring deep soil costs 25% less sugar.",
+    cost: 3,
+  },
+  {
+    id: "spore-alchemy",
+    name: "Spore Alchemy",
+    description: "Prestige rewards +30% extra spores.",
+    cost: 6,
+  },
+];
 
 const initialNodes: Node[] = [
   {
@@ -167,6 +223,39 @@ const initialNodes: Node[] = [
     description: "Aggressive neighbor siphoning sugar unless contained.",
     connections: ["nutrient-vein"],
   },
+  {
+    id: "artery-nexus",
+    name: "Artery Nexus",
+    type: "artery",
+    position: { x: 32, y: 48 },
+    yield: { sugar: 2 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Thicker bundle primed to branch into new chambers.",
+    connections: ["heart"],
+  },
+  {
+    id: "spore-bloom",
+    name: "Spore Bloom",
+    type: "spore",
+    position: { x: 82, y: 18 },
+    yield: { spores: 0.7, sugar: 1.6 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Pulsing puffball that feeds prestige cycles.",
+    connections: ["carbon-vent"],
+  },
+  {
+    id: "enzyme-pool",
+    name: "Enzyme Pool",
+    type: "enzyme",
+    position: { x: 12, y: 22 },
+    yield: { nutrients: 7, sugar: 1 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Soup of catalysts that helps neutralize toxins.",
+    connections: ["water-pocket"],
+  },
 ];
 
 const initialEdges: Edge[] = [
@@ -178,6 +267,9 @@ const initialEdges: Edge[] = [
   { id: "e-spring", from: "water-pocket", to: "deep-spring", capacity: 18, strain: 0, decay: 0.03 },
   { id: "e-toxic", from: "carbon-vent", to: "toxic-soil", capacity: 16, strain: 0, decay: 0.03 },
   { id: "e-rival", from: "nutrient-vein", to: "rival-colony", capacity: 16, strain: 0, decay: 0.03 },
+  { id: "e-artery", from: "heart", to: "artery-nexus", capacity: 30, strain: 0, decay: 0.02 },
+  { id: "e-spore", from: "carbon-vent", to: "spore-bloom", capacity: 16, strain: 0, decay: 0.03 },
+  { id: "e-enzyme", from: "water-pocket", to: "enzyme-pool", capacity: 18, strain: 0, decay: 0.03 },
 ];
 
 const resourceOrder: ResourceKey[] = ["sugar", "water", "carbon", "nutrients", "spores"];
@@ -195,6 +287,51 @@ function DropletIcon() {
   return <Map className="h-4 w-4 text-cyan-200 rotate-90" />;
 }
 
+const dynamicTemplates: Omit<Node, "id" | "position" | "connections" | "discovered">[] = [
+  {
+    name: "Crystalline Carbon", // uses carbon type
+    type: "carbon",
+    yield: { carbon: 14, sugar: 1.4 },
+    upgradeLevel: 0,
+    description: "Shards of charcoal glint with trapped energy.",
+  },
+  {
+    name: "Capillary Junction",
+    type: "artery",
+    yield: { sugar: 2.2 },
+    upgradeLevel: 0,
+    description: "A broad hub ready to branch into new caverns.",
+  },
+  {
+    name: "Verdant Compost",
+    type: "nutrient",
+    yield: { nutrients: 13 },
+    upgradeLevel: 0,
+    description: "Steaming compost thick with minerals.",
+  },
+  {
+    name: "Mineral Seep",
+    type: "water",
+    yield: { water: 15, sugar: 0.8 },
+    upgradeLevel: 0,
+    description: "Warm flow that keeps hyphae slick and pliable.",
+  },
+  {
+    name: "Spore Orchard",
+    type: "spore",
+    yield: { spores: 0.9, sugar: 1.8 },
+    upgradeLevel: 0,
+    description: "A ring of puffballs that remembers ancient cycles.",
+  },
+  {
+    name: "Catalyst Vat",
+    type: "enzyme",
+    yield: { nutrients: 6, sugar: 1.6 },
+    upgradeLevel: 0,
+    description: "Enzymes brew quietly, shielding hyphae from rot.",
+  },
+];
+
 function App() {
   const [resources, setResources] = useState<Resources>({
     sugar: 120,
@@ -206,8 +343,11 @@ function App() {
 
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
+  const [generatedNodes, setGeneratedNodes] = useState(0);
   const [flowRate, setFlowRate] = useState(0);
   const [pulse, setPulse] = useState(0);
+  const [prestigeLevel, setPrestigeLevel] = useState(0);
+  const [purchasedUpgrades, setPurchasedUpgrades] = useState<string[]>([]);
   const [events, setEvents] = useState<string[]>([
     "Heart awakens beneath the forest floor.",
     "Hyphae senses moisture veins nearby.",
@@ -227,12 +367,24 @@ function App() {
 
   const nodeMap = useMemo(() => Object.fromEntries(nodes.map((node) => [node.id, node])), [nodes]);
 
+  const prestigeEffects = useMemo(() => {
+    const purchased = new Set(purchasedUpgrades);
+    return {
+      resourceYield: purchased.has("rich-mycelium") ? 1.2 : 1,
+      edgeCapacity: purchased.has("tensile-hyphae") ? 1.25 : 1,
+      toxinMitigation: purchased.has("enzyme-membrane") ? 0.45 : 1,
+      conversionBonus: purchased.has("fermentation") ? 1.25 : 1,
+      exploreDiscount: purchased.has("scent-trails") ? 0.75 : 1,
+      sporeBonus: purchased.has("spore-alchemy") ? 1.3 : 1,
+    };
+  }, [purchasedUpgrades]);
+
   const addEvent = (message: string) =>
     setEvents((prev) => [message, ...prev].slice(0, 7));
 
   const calculateNodeYield = (node: Node) => {
     if (!node.yield) return {} as Partial<Record<ResourceKey, number>>;
-    const multiplier = 1 + node.upgradeLevel * 0.35;
+    const multiplier = (1 + node.upgradeLevel * 0.35) * prestigeEffects.resourceYield;
     return Object.fromEntries(
       Object.entries(node.yield).map(([key, value]) => [key, (value ?? 0) * multiplier]),
     ) as Partial<Record<ResourceKey, number>>;
@@ -260,14 +412,21 @@ function App() {
           });
 
           if (node.type === "ancient") {
-            updated.spores += 0.15;
+            updated.spores += 0.15 * prestigeEffects.sporeBonus;
             sugarGain += 1.3;
+          }
+          if (node.type === "spore") {
+            updated.spores += 0.25 * prestigeEffects.sporeBonus;
+            sugarGain += 1.1;
+          }
+          if (node.type === "enzyme") {
+            sugarGain += 0.4;
           }
           if (node.type === "rival") {
             sugarGain -= 1.5;
           }
           if (node.type === "toxic" && !node.purified) {
-            sugarGain -= 1.1;
+            sugarGain -= 1.1 * prestigeEffects.toxinMitigation;
           }
         });
 
@@ -276,7 +435,7 @@ function App() {
         if (conversionPotential > 0) {
           updated.water -= conversionPotential * 0.65;
           updated.carbon -= conversionPotential * 0.65;
-          sugarGain += conversionPotential * (1.35 + processingNodes.length * 0.1);
+          sugarGain += conversionPotential * (1.35 + processingNodes.length * 0.1) * prestigeEffects.conversionBonus;
         }
 
         const activeEdgeCount = edgesRef.current.filter((edge) => {
@@ -284,7 +443,7 @@ function App() {
           const to = nodeMap[edge.to];
           return from?.discovered && to?.discovered;
         }).length;
-        const maintenance = activeEdgeCount * 0.35;
+        const maintenance = activeEdgeCount * 0.35 * (prestigeEffects.edgeCapacity > 1 ? 0.9 : 1);
         const finalSugar = Math.max(0, updated.sugar + sugarGain - maintenance);
 
         setFlowRate(sugarGain - maintenance);
@@ -300,8 +459,9 @@ function App() {
           const active = node?.discovered && fromNode?.discovered;
           const yieldValues = node ? calculateNodeYield(node) : {};
           const throughput = Object.values(yieldValues).reduce((sum, value) => sum + (value ?? 0), 0);
-          const toxicity = node?.type === "toxic" && !node.purified ? 0.5 : 0;
-          const strain = active ? Math.min(1.6, throughput / edge.capacity + toxicity) : 0;
+          const toxicity = node?.type === "toxic" && !node.purified ? 0.5 * prestigeEffects.toxinMitigation : 0;
+          const effectiveCapacity = edge.capacity * prestigeEffects.edgeCapacity;
+          const strain = active ? Math.min(1.6, throughput / effectiveCapacity + toxicity) : 0;
           return { ...edge, strain };
         });
         edgesRef.current = nextEdges;
@@ -310,7 +470,7 @@ function App() {
     }, 1200);
 
     return () => window.clearInterval(interval);
-  }, [nodeMap]);
+  }, [nodeMap, prestigeEffects]);
 
   const cloggedEdges = useMemo(
     () => edges.filter((edge) => edge.strain > 1 && nodeMap[edge.from]?.discovered && nodeMap[edge.to]?.discovered),
@@ -319,26 +479,93 @@ function App() {
 
   const networkHealth = useMemo(() => {
     const strainPenalty = Math.min(35, cloggedEdges.length * 6 + edges.reduce((sum, edge) => sum + edge.strain * 4, 0) / 8);
-    const toxinPenalty = nodes.some((node) => node.type === "toxic" && node.discovered && !node.purified) ? 12 : 0;
-    return Math.max(18, 100 - strainPenalty - toxinPenalty);
-  }, [cloggedEdges.length, edges, nodes]);
+    const toxinPenalty = nodes.some((node) => node.type === "toxic" && node.discovered && !node.purified)
+      ? 12 * prestigeEffects.toxinMitigation
+      : 0;
+    const rivalPenalty = nodes.some((node) => node.type === "rival" && node.discovered) ? 4 : 0;
+    return Math.max(18, 100 - strainPenalty - toxinPenalty - rivalPenalty);
+  }, [cloggedEdges.length, edges, nodes, prestigeEffects.toxinMitigation]);
+
+  const pickAnchorNode = () => {
+    const anchors = nodesRef.current.filter((node) => node.discovered && node.type !== "rival");
+    if (anchors.length === 0) return null;
+    return anchors[Math.floor(Math.random() * anchors.length)];
+  };
+
+  const jitterPosition = (value: number) => Math.min(92, Math.max(8, value + (Math.random() * 18 - 9)));
+
+  const spawnDynamicNode = () => {
+    const anchor = pickAnchorNode();
+    if (!anchor) return null;
+    const template = dynamicTemplates[generatedNodes % dynamicTemplates.length];
+    const id = `${template.type}-${generatedNodes + 1}`;
+    const position = { x: jitterPosition(anchor.position.x), y: jitterPosition(anchor.position.y) };
+    const capacityBoost = prestigeEffects.edgeCapacity > 1 ? 4 : 0;
+    const newNode: Node = {
+      ...template,
+      id,
+      position,
+      discovered: true,
+      connections: [anchor.id],
+      yield: template.yield,
+      upgradeLevel: template.upgradeLevel,
+      description: template.description,
+    };
+    const newEdge: Edge = {
+      id: `e-${anchor.id}-${id}-${generatedNodes}`,
+      from: anchor.id,
+      to: id,
+      capacity: 15 + Math.round(Math.random() * 12) + capacityBoost,
+      strain: 0,
+      decay: 0.03,
+    };
+
+    setNodes((prev) => {
+      const updated = prev.map((node) =>
+        node.id === anchor.id ? { ...node, connections: [...node.connections, id] } : node,
+      );
+      return [...updated, newNode];
+    });
+    setEdges((prev) => [...prev, newEdge]);
+    setGeneratedNodes((count) => count + 1);
+    return newNode;
+  };
+
+  const resetNetwork = (sporeGain: number) => {
+    setNodes(initialNodes.map((node) => ({ ...node })));
+    setEdges(initialEdges.map((edge) => ({ ...edge, strain: 0 })));
+    setGeneratedNodes(0);
+    setResources({ sugar: 120, water: 85, carbon: 70, nutrients: 55, spores: sporeGain });
+  };
 
   const handleExplore = () => {
-    if (resources.sugar < 120) return addEvent("Not enough sugar to explore deeper soil.");
+    const exploreCost = Math.max(60, 120 * prestigeEffects.exploreDiscount);
+    if (resources.sugar < exploreCost)
+      return addEvent(`Not enough sugar to explore deeper soil (${Math.ceil(exploreCost)} needed).`);
     const undiscovered = nodes.find((node) => !node.discovered);
-    if (!undiscovered) return addEvent("The map is fully illuminated.");
 
-    setResources((prev) => ({ ...prev, sugar: prev.sugar - 120 }));
-    setNodes((prev) =>
-      prev.map((node) => (node.id === undiscovered.id ? { ...node, discovered: true } : node)),
-    );
-    addEvent(`Hyphae breached a new chamber: ${undiscovered.name}.`);
+    if (undiscovered) {
+      setResources((prev) => ({ ...prev, sugar: prev.sugar - exploreCost }));
+      setNodes((prev) =>
+        prev.map((node) => (node.id === undiscovered.id ? { ...node, discovered: true } : node)),
+      );
+      addEvent(`Hyphae breached a new chamber: ${undiscovered.name}.`);
+      return;
+    }
+
+    const generated = spawnDynamicNode();
+    if (!generated) return addEvent("No stable anchor exists for deeper exploration.");
+    setResources((prev) => ({ ...prev, sugar: prev.sugar - exploreCost }));
+    addEvent(`New pocket uncovered: ${generated.name}.`);
   };
 
   const handleUpgrade = () => {
     if (resources.sugar < 90) return addEvent("Insufficient sugar to upgrade a node.");
     const candidate = nodes.find(
-      (node) => node.discovered && ["water", "carbon", "nutrient", "spring"].includes(node.type) && node.upgradeLevel < 3,
+      (node) =>
+        node.discovered &&
+        ["water", "carbon", "nutrient", "spring", "spore", "enzyme", "artery"].includes(node.type) &&
+        node.upgradeLevel < 3,
     );
     if (!candidate) return addEvent("All resource pockets are tuned to their limit.");
 
@@ -378,6 +605,32 @@ function App() {
     setResources((prev) => ({ ...prev, sugar: prev.sugar - 110, spores: Math.max(0, prev.spores - 1) }));
     setNodes((prev) => prev.map((node) => (node.id === toxicNode.id ? { ...node, purified: true } : node)));
     addEvent(`${toxicNode.name} neutralized with enzyme wash.`);
+  };
+
+  const handlePrestige = () => {
+    const discoveredCount = nodes.filter((node) => node.discovered).length;
+    if (discoveredCount < 6) return addEvent("The network is too small to fruit.");
+    if (resources.sugar < 380) return addEvent("Fruiting needs 380 sugar to gather strength.");
+
+    const sporeGain = Math.max(
+      2,
+      Math.round((discoveredCount * 0.9 + flowRate * 0.8 + resources.sugar / 90) * prestigeEffects.sporeBonus),
+    );
+
+    resetNetwork(resources.spores + sporeGain);
+    setPrestigeLevel((level) => level + 1);
+    addEvent(`Fruiting body rises, scattering ${format(sporeGain)} spores into memory.`);
+  };
+
+  const handlePurchaseUpgrade = (id: PrestigeUpgrade["id"]) => {
+    const upgrade = prestigeUpgrades.find((entry) => entry.id === id);
+    if (!upgrade) return;
+    if (purchasedUpgrades.includes(id)) return addEvent(`${upgrade.name} already woven through the hyphae.`);
+    if (resources.spores < upgrade.cost) return addEvent("Not enough spores to weave this trait.");
+
+    setResources((prev) => ({ ...prev, spores: prev.spores - upgrade.cost }));
+    setPurchasedUpgrades((prev) => [...prev, id]);
+    addEvent(`${upgrade.name} woven into the lineage.`);
   };
 
   const networkPulse = useMemo(() => Math.max(0, pulse), [pulse]);
@@ -486,6 +739,58 @@ function App() {
             </section>
 
             <section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden">
+              <div className="flex items-center gap-3 mb-4">
+                <Crown className="h-5 w-5 text-amber-300" />
+                <p className="uppercase text-xs tracking-[0.3em] text-amber-200/80">Fruiting & Evolution</p>
+              </div>
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <p className="text-xs uppercase text-slate-300">Prestige Level</p>
+                  <p className="text-2xl font-semibold text-amber-100">{prestigeLevel}</p>
+                </div>
+                <button
+                  onClick={handlePrestige}
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400/80 to-purple-400/70 text-soil-900 font-semibold shadow hover:shadow-lg transition disabled:opacity-60 disabled:cursor-not-allowed"
+                  disabled={resources.sugar < 380 || nodes.filter((node) => node.discovered).length < 6}
+                >
+                  Trigger Fruiting
+                </button>
+              </div>
+              <p className="text-xs text-slate-300 mb-3">
+                Reset the network for spores. Requires 380 sugar and at least six discovered nodes. Upgrades persist.
+              </p>
+              <div className="grid grid-cols-1 gap-3">
+                {prestigeUpgrades.map((upgrade) => {
+                  const owned = purchasedUpgrades.includes(upgrade.id);
+                  const affordable = resources.spores >= upgrade.cost;
+                  return (
+                    <div
+                      key={upgrade.id}
+                      className="rounded-2xl border border-slate-800/60 bg-slate-900/60 p-3 space-y-2"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold text-slate-50">{upgrade.name}</p>
+                          <p className="text-xs text-slate-300">{upgrade.description}</p>
+                        </div>
+                        <div className="text-xs px-2 py-1 rounded-full border border-slate-700/60 text-amber-200 bg-amber-500/10">
+                          {owned ? "Integrated" : `${upgrade.cost} spores`}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handlePurchaseUpgrade(upgrade.id)}
+                        disabled={owned || !affordable}
+                        className="text-sm font-semibold px-3 py-2 rounded-xl border border-amber-400/40 text-amber-100 bg-amber-500/10 hover:bg-amber-400/20 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        {owned ? "Locked In" : "Weave Upgrade"}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            <section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden">
               <div className="flex items-center gap-3 mb-3">
                 <Sparkles className="h-5 w-5 text-amber-300" />
                 <p className="uppercase text-xs tracking-[0.3em] text-amber-200/80">Events</p>
@@ -553,6 +858,9 @@ function App() {
                     carbon: "from-slate-300 to-slate-100",
                     nutrient: "from-lime-400 to-amber-300",
                     ancient: "from-amber-400 to-purple-300",
+                    artery: "from-purple-300 to-cyan-200",
+                    enzyme: "from-emerald-300 to-lime-300",
+                    spore: "from-amber-300 to-rose-200",
                     toxic: node.purified ? "from-emerald-400 to-cyan-400" : "from-rose-500 to-amber-500",
                     rival: "from-slate-200 to-red-300",
                     spring: "from-cyan-300 to-emerald-300",

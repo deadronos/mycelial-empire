@@ -1,5 +1,9 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Tailwind CSS configuration file.
+ * Defines custom colors, fonts, drop shadows, and other theme extensions.
+ */
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {

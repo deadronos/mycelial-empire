@@ -7,6 +7,10 @@ import { defineConfig } from "vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/**
+ * Vite configuration file.
+ * Configures React plugin, Tailwind CSS, path aliases, and server settings.
+ */
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {

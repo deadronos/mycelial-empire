@@ -1,58 +1,66 @@
 # Mycelial Empire
 
-A modern Vite + React + TypeScript sandbox for simulating a glowing underground fungal colony. It ports the original JSX prototype into a typed architecture with Zustand stores, Miniplex ECS hydration, R3F graph rendering, and Radix-powered UI/UX utilities.
+A modern Vite + React + TypeScript sandbox for simulating a glowing underground fungal colony. This project implements a resource management and network growth simulation where players manage a mycelial network.
+
+## Features
+
+- **Network Simulation**: Manage nodes (heart, junction, water, carbon, etc.) and edges (hyphae) with flow capacity and strain.
+- **Resource Management**: Collect and balance Sugar, Water, Carbon, Nutrients, and Spores.
+- **Dynamic Growth**: Explore to reveal new nodes or spawn them procedurally.
+- **Prestige System**: "Fruiting" resets the network but grants Spores for permanent upgrades.
+- **Visuals**: Glowing SVG-based hyphae network with dynamic effects.
 
 ## Stack
 
-- **Vite + React 19 + TypeScript** with path aliases via `@/`
-- **Tailwind CSS v4** (via `@tailwindcss/vite`) for styling tokens and utility-first layout
-- **Zustand** gameplay + UI preference stores (autosave, dialogs, toast queue)
-- **Miniplex + miniplex-react** to mirror graph nodes/edges as ECS entities for the renderer
-- **@react-three/fiber + drei** to render the orthographic hyphae network
-- **Radix UI (Dialog + Toast)** for accessible overlays and feedback
-- **Prettier + ESLint** with flat config setup for consistent linting/formatting
+- **Vite + React 19 + TypeScript**
+- **Tailwind CSS v4** for styling
+- **Lucide React** for icons
+- **Radix UI** (available in dependencies)
 
-## Getting started
+## Getting Started
+
+### Prerequisites
+
+- Node.js (Latest LTS recommended)
+
+### Installation
 
 ```bash
 npm install
+```
+
+### Running the App
+
+```bash
 npm run dev
 ```
 
-Additional scripts:
+### Scripts
 
-- `npm run lint` / `npm run lint:fix`
-- `npm run format`
-- `npm run typecheck`
-- `npm run build`
+- `npm run dev`: Start development server.
+- `npm run build`: Build for production.
+- `npm run lint`: Run ESLint.
+- `npm run format`: Format code with Prettier.
+- `npm run typecheck`: Run TypeScript compiler check.
+- `npm test`: Run tests with Vitest.
 
-## Key files
+## Project Structure
 
 ```
 src/
- ├─ App.tsx                   # Screen composition + HUD overlays
- ├─ graphics/GraphScene.tsx   # R3F renderer consuming Miniplex entities
-## Testing
-
-This repository uses Vitest + Testing Library for tests. Run the following commands:
-
-- Run tests once: `npm test` or `npm run test`
-- Run tests in watch mode: `npm run test:watch`
-- Run tests with coverage: `npm run test:coverage`
-
-Tests use `tsconfig.test.json` to load typing and test globals.
- ├─ state/useGameStore.ts     # Resources, nodes/edges, actions, tick loop
- ├─ state/useUiStore.ts       # Autosave prefs, dialogs, toasts, dev toggles
- ├─ hooks/                    # Autosave + hydration + ticker hooks
- ├─ components/               # HUD, action bar, settings dialog, toast hub
- └─ ecs/world.ts              # Miniplex world + sync helpers
+ ├─ App.tsx           # Main game logic, state, and UI rendering (Prototype Monolith)
+ ├─ main.tsx          # Application entry point
+ ├─ index.css         # Global styles and Tailwind directives
 ```
 
-Reference material from the original prototype, mock UI, and design doc now lives in `docs/` for quick lookup.
+## Game Mechanics
 
-## Next steps
+1.  **Flow & Strain**: Resources flow from sources to the Heart. Edges have capacity; exceeding it causes strain.
+2.  **Upgrades**: Spend Sugar to upgrade Node efficiency.
+3.  **Reinforcement**: Spend Sugar to increase Edge capacity.
+4.  **Exploration**: Spend Sugar to discover new parts of the map.
+5.  **Prestige**: Trigger "Fruiting" to gain Spores and unlock permanent buffs like "Rich Mycelium" or "Tensile Hyphae".
 
-1. Flesh out additional node types and rival colony events inside `useGameStore`.
-2. Expand `GraphScene` with bloom/post-processing and hover tooltips.
-3. Hook up import validation messaging (toast + inline error state) and add more dev toggles per the plan.
-4. Layer in ECS inspectors or overlays leveraging the existing UI store toggles.
+## Documentation
+
+All source code is fully documented with JSDoc/TSDoc comments. Hover over functions and types in your IDE for details.

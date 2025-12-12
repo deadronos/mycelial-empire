@@ -17,15 +17,30 @@ import {
   Zap,
 } from "lucide-react";
 
+/**
+ * Formatter for numbers to have simplified US locale formatting with max 1 decimal.
+ */
 const formatter = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 1,
   minimumFractionDigits: 0,
 });
 
+/**
+ * Formats a number for display, ensuring it is non-negative.
+ *
+ * @param value - The number to format.
+ * @returns A string representation of the number.
+ */
 const format = (value: number) => formatter.format(Math.max(0, value));
 
+/**
+ * Represents the types of resources available in the game.
+ */
 type ResourceKey = "sugar" | "water" | "carbon" | "nutrients" | "spores";
 
+/**
+ * Represents the various types of nodes in the network.
+ */
 type NodeType =
   | "heart"
   | "water"
@@ -40,30 +55,57 @@ type NodeType =
   | "artery"
   | "spore";
 
+/**
+ * Represents a node in the mycelial network.
+ */
 interface Node {
+  /** Unique identifier for the node. */
   id: string;
+  /** Display name of the node. */
   name: string;
+  /** The type of the node. */
   type: NodeType;
+  /** The 2D position of the node (0-100 range). */
   position: { x: number; y: number };
+  /** Resource yield per tick, if any. */
   yield?: Partial<Record<ResourceKey, number>>;
+  /** Whether the node has been discovered by the player. */
   discovered: boolean;
+  /** Current upgrade level of the node. */
   upgradeLevel: number;
+  /** Description text for the node. */
   description: string;
+  /** List of IDs of connected nodes. */
   connections: string[];
+  /** Whether a toxic node has been purified. */
   purified?: boolean;
 }
 
+/**
+ * Represents a connection between two nodes.
+ */
 interface Edge {
+  /** Unique identifier for the edge. */
   id: string;
+  /** ID of the source node. */
   from: string;
+  /** ID of the target node. */
   to: string;
+  /** Maximum flow capacity of the edge. */
   capacity: number;
+  /** Current strain level on the edge. */
   strain: number;
+  /** Decay rate of the edge. */
   decay: number;
+  /** Whether the edge has been reinforced by the player. */
   reinforced?: boolean;
 }
 
+/**
+ * Represents an upgrade available upon prestige.
+ */
 interface PrestigeUpgrade {
+  /** Unique identifier for the upgrade. */
   id:
     | "rich-mycelium"
     | "tensile-hyphae"
@@ -71,19 +113,33 @@ interface PrestigeUpgrade {
     | "fermentation"
     | "scent-trails"
     | "spore-alchemy";
+  /** Display name of the upgrade. */
   name: string;
+  /** Description of the upgrade's effect. */
   description: string;
+  /** Cost in spores to purchase the upgrade. */
   cost: number;
 }
 
+/**
+ * Represents the current amounts of collected resources.
+ */
 interface Resources {
+  /** Amount of sugar available. */
   sugar: number;
+  /** Amount of water available. */
   water: number;
+  /** Amount of carbon available. */
   carbon: number;
+  /** Amount of nutrients available. */
   nutrients: number;
+  /** Amount of spores available. */
   spores: number;
 }
 
+/**
+ * List of available prestige upgrades.
+ */
 const prestigeUpgrades: PrestigeUpgrade[] = [
   {
     id: "rich-mycelium",
@@ -123,6 +179,9 @@ const prestigeUpgrades: PrestigeUpgrade[] = [
   },
 ];
 
+/**
+ * Initial set of nodes for a new game.
+ */
 const initialNodes: Node[] = [
   {
     id: "heart",
@@ -258,6 +317,9 @@ const initialNodes: Node[] = [
   },
 ];
 
+/**
+ * Initial set of edges for a new game.
+ */
 const initialEdges: Edge[] = [
   { id: "e-heart", from: "heart", to: "junction-a", capacity: 52, strain: 0.2, decay: 0.01 },
   { id: "e-water", from: "junction-a", to: "water-pocket", capacity: 26, strain: 0.35, decay: 0.02 },
@@ -272,8 +334,14 @@ const initialEdges: Edge[] = [
   { id: "e-enzyme", from: "water-pocket", to: "enzyme-pool", capacity: 18, strain: 0, decay: 0.03 },
 ];
 
+/**
+ * Order in which resources are displayed.
+ */
 const resourceOrder: ResourceKey[] = ["sugar", "water", "carbon", "nutrients", "spores"];
 
+/**
+ * Metadata for each resource type including label, color, and icon.
+ */
 const resourceCopy: Record<ResourceKey, { label: string; color: string; icon: ReactNode }>
   = {
     sugar: { label: "Sugar", color: "text-purple-200", icon: <Sparkles className="h-4 w-4 text-purple-300" /> },
@@ -283,10 +351,18 @@ const resourceCopy: Record<ResourceKey, { label: string; color: string; icon: Re
     spores: { label: "Spore Dust", color: "text-amber-200", icon: <Trees className="h-4 w-4 text-amber-200" /> },
   };
 
+/**
+ * Renders a rotated map icon representing a droplet.
+ *
+ * @returns A JSX element containing the icon.
+ */
 function DropletIcon() {
   return <Map className="h-4 w-4 text-cyan-200 rotate-90" />;
 }
 
+/**
+ * Templates for dynamically spawned nodes.
+ */
 const dynamicTemplates: Omit<Node, "id" | "position" | "connections" | "discovered">[] = [
   {
     name: "Crystalline Carbon", // uses carbon type
@@ -332,6 +408,15 @@ const dynamicTemplates: Omit<Node, "id" | "position" | "connections" | "discover
   },
 ];
 
+/**
+ * The main application component for Mycelial Empire.
+ *
+ * Manages the game state including resources, nodes, edges, and game loop.
+ * Renders the UI for the game including the header, resource panel, command panel,
+ * prestige panel, event log, and the network map.
+ *
+ * @returns The rendered application component.
+ */
 function App() {
   const [resources, setResources] = useState<Resources>({
     sugar: 120,
@@ -379,9 +464,20 @@ function App() {
     };
   }, [purchasedUpgrades]);
 
+  /**
+   * Adds a new event message to the log, keeping the most recent 7.
+   *
+   * @param message - The event message to add.
+   */
   const addEvent = (message: string) =>
     setEvents((prev) => [message, ...prev].slice(0, 7));
 
+  /**
+   * Calculates the resource yield for a specific node based on its type, upgrades, and prestige effects.
+   *
+   * @param node - The node to calculate yield for.
+   * @returns An object containing the resource yield values.
+   */
   const calculateNodeYield = (node: Node) => {
     if (!node.yield) return {} as Partial<Record<ResourceKey, number>>;
     const multiplier = (1 + node.upgradeLevel * 0.35) * prestigeEffects.resourceYield;
@@ -486,14 +582,30 @@ function App() {
     return Math.max(18, 100 - strainPenalty - toxinPenalty - rivalPenalty);
   }, [cloggedEdges.length, edges, nodes, prestigeEffects.toxinMitigation]);
 
+  /**
+   * Selects a random discovered node to serve as an anchor for new growth.
+   *
+   * @returns A random anchor node or null if none are available.
+   */
   const pickAnchorNode = () => {
     const anchors = nodesRef.current.filter((node) => node.discovered && node.type !== "rival");
     if (anchors.length === 0) return null;
     return anchors[Math.floor(Math.random() * anchors.length)];
   };
 
+  /**
+   * Adds random jitter to a coordinate value within bounds [8, 92].
+   *
+   * @param value - The original coordinate value.
+   * @returns The jittered coordinate value.
+   */
   const jitterPosition = (value: number) => Math.min(92, Math.max(8, value + (Math.random() * 18 - 9)));
 
+  /**
+   * Spawns a new dynamic node connected to an existing anchor.
+   *
+   * @returns The newly created node or null if spawning failed.
+   */
   const spawnDynamicNode = () => {
     const anchor = pickAnchorNode();
     if (!anchor) return null;
@@ -531,6 +643,11 @@ function App() {
     return newNode;
   };
 
+  /**
+   * Resets the network state for a new run (prestige).
+   *
+   * @param sporeGain - The amount of spores to start with in the new run.
+   */
   const resetNetwork = (sporeGain: number) => {
     setNodes(initialNodes.map((node) => ({ ...node })));
     setEdges(initialEdges.map((edge) => ({ ...edge, strain: 0 })));
@@ -538,6 +655,10 @@ function App() {
     setResources({ sugar: 120, water: 85, carbon: 70, nutrients: 55, spores: sporeGain });
   };
 
+  /**
+   * Handles the exploration action.
+   * Consumes sugar to reveal a hidden node or spawn a new one.
+   */
   const handleExplore = () => {
     const exploreCost = Math.max(60, 120 * prestigeEffects.exploreDiscount);
     if (resources.sugar < exploreCost)
@@ -559,6 +680,10 @@ function App() {
     addEvent(`New pocket uncovered: ${generated.name}.`);
   };
 
+  /**
+   * Handles the node upgrade action.
+   * Consumes sugar to increase the upgrade level of a random eligible node.
+   */
   const handleUpgrade = () => {
     if (resources.sugar < 90) return addEvent("Insufficient sugar to upgrade a node.");
     const candidate = nodes.find(
@@ -580,6 +705,10 @@ function App() {
     addEvent(`${candidate.name} now channels resources 35% faster.`);
   };
 
+  /**
+   * Handles the edge reinforcement action.
+   * Consumes sugar to increase the capacity and reduce strain of the most stressed edge.
+   */
   const handleReinforce = () => {
     if (resources.sugar < 70) return addEvent("Reinforcement requires more sugar reserves.");
     const target = [...edges].sort((a, b) => b.strain - a.strain)[0];
@@ -596,6 +725,10 @@ function App() {
     addEvent(`Hyphae thickened along ${target.id}, easing pressure.`);
   };
 
+  /**
+   * Handles the toxin purification action.
+   * Consumes sugar and spores to purify a toxic node.
+   */
   const handlePurify = () => {
     const toxicNode = nodes.find((node) => node.type === "toxic" && node.discovered && !node.purified);
     if (!toxicNode) return addEvent("No corrupted soil currently threatens the network.");
@@ -607,6 +740,10 @@ function App() {
     addEvent(`${toxicNode.name} neutralized with enzyme wash.`);
   };
 
+  /**
+   * Handles the prestige (fruiting) action.
+   * Resets the network and awards spores based on progress.
+   */
   const handlePrestige = () => {
     const discoveredCount = nodes.filter((node) => node.discovered).length;
     if (discoveredCount < 6) return addEvent("The network is too small to fruit.");
@@ -622,6 +759,11 @@ function App() {
     addEvent(`Fruiting body rises, scattering ${format(sporeGain)} spores into memory.`);
   };
 
+  /**
+   * Handles the purchase of a prestige upgrade.
+   *
+   * @param id - The ID of the upgrade to purchase.
+   */
   const handlePurchaseUpgrade = (id: PrestigeUpgrade["id"]) => {
     const upgrade = prestigeUpgrades.find((entry) => entry.id === id);
     if (!upgrade) return;

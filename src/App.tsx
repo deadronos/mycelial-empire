@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -16,6 +14,8 @@ import {
   Trees,
   Zap,
 } from "lucide-react";
+import type { ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * Formatter for numbers to have simplified US locale formatting with max 1 decimal.
@@ -856,11 +856,12 @@ function App() {
                 <p className="uppercase text-xs tracking-[0.3em] text-cyan-200/80">Commands</p>
               </div>
               <div className="grid grid-cols-1 gap-3">
+                {/* eslint-disable-next-line react-hooks/refs */}
                 {buttons.map(({ icon: Icon, label, onClick, glow }) => (
                   <button
                     key={label}
                     onClick={onClick}
-                    className={`relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/70 px-4 py-3 text-left transition hover:-translate-y-0.5 hover:border-purple-400/50`}
+                    className={`relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/70 px-4 py-3 text-left transition hover:-translate-y-0.5 hover:border-purple-400/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400`}
                   >
                     <div className={`absolute inset-0 bg-gradient-to-r ${glow} opacity-40`} />
                     <div className="relative flex items-center justify-between">
@@ -892,7 +893,7 @@ function App() {
                 </div>
                 <button
                   onClick={handlePrestige}
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400/80 to-purple-400/70 text-soil-900 font-semibold shadow hover:shadow-lg transition disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400/80 to-purple-400/70 text-soil-900 font-semibold shadow hover:shadow-lg transition disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-soil-900"
                   disabled={resources.sugar < 380 || nodes.filter((node) => node.discovered).length < 6}
                 >
                   Trigger Fruiting
@@ -922,7 +923,7 @@ function App() {
                       <button
                         onClick={() => handlePurchaseUpgrade(upgrade.id)}
                         disabled={owned || !affordable}
-                        className="text-sm font-semibold px-3 py-2 rounded-xl border border-amber-400/40 text-amber-100 bg-amber-500/10 hover:bg-amber-400/20 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="text-sm font-semibold px-3 py-2 rounded-xl border border-amber-400/40 text-amber-100 bg-amber-500/10 hover:bg-amber-400/20 transition disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
                       >
                         {owned ? "Locked In" : "Weave Upgrade"}
                       </button>
@@ -937,7 +938,12 @@ function App() {
                 <Sparkles className="h-5 w-5 text-amber-300" />
                 <p className="uppercase text-xs tracking-[0.3em] text-amber-200/80">Events</p>
               </div>
-              <ul className="space-y-2 text-sm text-slate-200">
+              <ul
+                role="log"
+                aria-live="polite"
+                aria-relevant="additions"
+                className="space-y-2 text-sm text-slate-200"
+              >
                 {events.map((event, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <span className="h-2 w-2 mt-2 rounded-full bg-purple-400 shadow-[0_0_10px_rgba(124,58,237,0.65)]" />

@@ -26,6 +26,13 @@ import type { NodeType, ResourceKey } from "./types/game";
 const resourceOrder: ResourceKey[] = ["sugar", "water", "carbon", "nutrients", "spores"];
 
 /**
+ * Renders a rotated map icon representing a droplet.
+ *
+ * @returns A JSX element containing the icon.
+ */
+const DropletIcon = () => <MapIcon className="h-4 w-4 text-cyan-200 rotate-90" />;
+
+/**
  * Metadata for each resource type including label, color, and icon.
  */
 const resourceCopy: Record<ResourceKey, { label: string; color: string; icon: ReactNode }> = {
@@ -36,14 +43,7 @@ const resourceCopy: Record<ResourceKey, { label: string; color: string; icon: Re
   spores: { label: "Spore Dust", color: "text-amber-200", icon: <Trees className="h-4 w-4 text-amber-200" /> },
 };
 
-/**
- * Renders a rotated map icon representing a droplet.
- *
- * @returns A JSX element containing the icon.
- */
-function DropletIcon() {
-  return <MapIcon className="h-4 w-4 text-cyan-200 rotate-90" />;
-}
+
 
 /**
  * The main application component for Mycelial Empire.
@@ -54,7 +54,7 @@ function DropletIcon() {
  *
  * @returns The rendered application component.
  */
-function App() {
+const App = () => {
   const {
     resources,
     nodes,

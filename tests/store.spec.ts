@@ -1,4 +1,5 @@
-import { beforeEach, describe, it, expect } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { useGameStore } from '../src/store/gameStore';
 
 function resetStore() {
@@ -87,7 +88,6 @@ describe('useGameStore actions', () => {
   });
 
   it('tick updates edges strain and flow/pulse numbers', () => {
-    const beforeEdges = useGameStore.getState().edges.map((e) => e.strain);
     useGameStore.getState().tick();
     const after = useGameStore.getState();
     expect(typeof after.flowRate).toBe('number');

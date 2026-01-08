@@ -8,8 +8,8 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     watch: false,
-    include: ['src/**/*.{test,spec}.{ts,tsx,js,jsx}', 'tests/**/*.{test,spec}.{ts,tsx,js,jsx}'],
-    setupFiles: ['src/setupTests.ts'],
+    include: ['tests/**/*.{test,spec}.{ts,tsx,js,jsx}'],
+    setupFiles: ['tests/setupTests.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov', 'html'],

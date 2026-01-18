@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 import type { Edge, Node, PrestigeUpgrade, ResourceKey, Resources } from "../types/game";
+import { calculateNodeYield, calculatePrestigeEffects, isEdgeActive } from "../utils/gameLogic";
 
 interface GameState {
   resources: Resources;
@@ -305,23 +306,9 @@ export const useGameStore = create<GameState>((set, get) => ({
     const { nodes, edges, purchasedUpgrades } = get();
 
     // Calculate prestige effects
-    const purchased = new Set(purchasedUpgrades);
-    const prestigeEffects = {
-      resourceYield: purchased.has("rich-mycelium") ? 1.2 : 1,
-      edgeCapacity: purchased.has("tensile-hyphae") ? 1.25 : 1,
-      toxinMitigation: purchased.has("enzyme-membrane") ? 0.45 : 1,
-      conversionBonus: purchased.has("fermentation") ? 1.25 : 1,
-      sporeBonus: purchased.has("spore-alchemy") ? 1.3 : 1,
-    };
+    const prestigeEffects = calculatePrestigeEffects(purchasedUpgrades);
 
     const nodeMap = Object.fromEntries(nodes.map((node) => [node.id, node]));
-    const calculateNodeYield = (node: Node) => {
-      if (!node.yield) return {} as Partial<Record<ResourceKey, number>>;
-      const multiplier = (1 + node.upgradeLevel * 0.35) * prestigeEffects.resourceYield;
-      return Object.fromEntries(
-        Object.entries(node.yield).map(([key, value]) => [key, (value ?? 0) * multiplier]),
-      ) as Partial<Record<ResourceKey, number>>;
-    };
 
     set((state) => {
       const updatedResources = { ...state.resources };
@@ -331,7 +318,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       // Resource Accumulation
       nodes.forEach((node) => {
         if (!node.discovered) return;
-        const yieldValues = calculateNodeYield(node);
+        const yieldValues = calculateNodeYield(node, prestigeEffects.resourceYield);
         Object.entries(yieldValues).forEach(([key, value]) => {
           if (key === "sugar") {
             sugarGain += value ?? 0;
@@ -371,11 +358,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       }
 
       // Maintenance
-      const activeEdgeCount = edges.filter((edge) => {
-        const from = nodeMap[edge.from];
-        const to = nodeMap[edge.to];
-        return from?.discovered && to?.discovered;
-      }).length;
+      const activeEdgeCount = edges.filter((edge) => isEdgeActive(edge, nodeMap)).length;
       const maintenance = activeEdgeCount * 0.35 * (prestigeEffects.edgeCapacity > 1 ? 0.9 : 1);
       const finalSugar = Math.max(0, updatedResources.sugar + sugarGain - maintenance);
 
@@ -384,7 +367,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         const node = nodes.find((entry) => entry.id === edge.to);
         const fromNode = nodes.find((entry) => entry.id === edge.from);
         const active = node?.discovered && fromNode?.discovered;
-        const yieldValues = node ? calculateNodeYield(node) : {};
+        const yieldValues = node ? calculateNodeYield(node, prestigeEffects.resourceYield) : {};
         const throughput = Object.values(yieldValues).reduce((sum, value) => sum + (value ?? 0), 0);
         const toxicity = node?.type === "toxic" && !node.purified ? 0.5 * prestigeEffects.toxinMitigation : 0;
         const effectiveCapacity = edge.capacity * prestigeEffects.edgeCapacity;
@@ -404,9 +387,8 @@ export const useGameStore = create<GameState>((set, get) => ({
   explore: () => {
     const { resources, nodes, generatedNodes, purchasedUpgrades, addEvent } = get();
 
-    const purchased = new Set(purchasedUpgrades);
-    const exploreDiscount = purchased.has("scent-trails") ? 0.75 : 1;
-    const exploreCost = Math.max(60, 120 * exploreDiscount);
+    const prestigeEffects = calculatePrestigeEffects(purchasedUpgrades);
+    const exploreCost = Math.max(60, 120 * prestigeEffects.exploreDiscount);
 
     if (resources.sugar < exploreCost) {
       addEvent(`Not enough sugar to explore deeper soil (${Math.ceil(exploreCost)} needed).`);
@@ -438,7 +420,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     const position = { x: jitterPosition(anchor.position.x), y: jitterPosition(anchor.position.y) };
 
     // Check if tensile-hyphae is active
-    const capacityBoost = purchased.has("tensile-hyphae") ? 4 : 0;
+    const capacityBoost = prestigeEffects.exploreCapacityBoost;
 
     const newNode: Node = {
       ...template,
@@ -558,12 +540,10 @@ export const useGameStore = create<GameState>((set, get) => ({
       return;
     }
 
-    const purchased = new Set(purchasedUpgrades);
-    const sporeBonus = purchased.has("spore-alchemy") ? 1.3 : 1;
-
+    const prestigeEffects = calculatePrestigeEffects(purchasedUpgrades);
     const sporeGain = Math.max(
       2,
-      Math.round((discoveredCount * 0.9 + flowRate * 0.8 + resources.sugar / 90) * sporeBonus),
+      Math.round((discoveredCount * 0.9 + flowRate * 0.8 + resources.sugar / 90) * prestigeEffects.sporeBonus),
     );
 
     resetNetwork(resources.spores + sporeGain);

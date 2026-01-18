@@ -5,43 +5,18 @@ import {
   BadgeCheck,
   Crown,
   Flame,
-  Leaf,
   Map as MapIcon,
   Network,
   ShieldCheck,
   Sparkles,
   TestTubeDiagonal,
-  Trees,
   Zap,
 } from "lucide-react";
-import type { ReactNode } from "react";
 import { useEffect, useMemo } from "react";
 
 import { format, prestigeUpgrades, useGameStore } from "./store/gameStore";
-import type { NodeType, ResourceKey } from "./types/game";
-
-/**
- * Order in which resources are displayed.
- */
-const resourceOrder: ResourceKey[] = ["sugar", "water", "carbon", "nutrients", "spores"];
-
-/**
- * Renders a rotated map icon representing a droplet.
- *
- * @returns A JSX element containing the icon.
- */
-const DropletIcon = () => <MapIcon className="h-4 w-4 text-cyan-200 rotate-90" />;
-
-/**
- * Metadata for each resource type including label, color, and icon.
- */
-const resourceCopy: Record<ResourceKey, { label: string; color: string; icon: ReactNode }> = {
-  sugar: { label: "Sugar", color: "text-purple-200", icon: <Sparkles className="h-4 w-4 text-purple-300" /> },
-  water: { label: "Water", color: "text-cyan-200", icon: <DropletIcon /> },
-  carbon: { label: "Carbon", color: "text-slate-200", icon: <Flame className="h-4 w-4 text-slate-200" /> },
-  nutrients: { label: "Nutrients", color: "text-lime-200", icon: <Leaf className="h-4 w-4 text-lime-200" /> },
-  spores: { label: "Spore Dust", color: "text-amber-200", icon: <Trees className="h-4 w-4 text-amber-200" /> },
-};
+import { calculatePrestigeEffects, isEdgeActive } from "./utils/gameLogic";
+import { getNodeGradient, resourceCopy, resourceOrder } from "./utils/uiConstants";
 
 
 
@@ -81,16 +56,14 @@ const App = () => {
   const nodeMap = useMemo(() => Object.fromEntries(nodes.map((node) => [node.id, node])), [nodes]);
 
   const cloggedEdges = useMemo(
-    () => edges.filter((edge) => edge.strain > 1 && nodeMap[edge.from]?.discovered && nodeMap[edge.to]?.discovered),
+    () => edges.filter((edge) => edge.strain > 1 && isEdgeActive(edge, nodeMap)),
     [edges, nodeMap],
   );
 
-  const prestigeEffects = useMemo(() => {
-    const purchased = new Set(purchasedUpgrades);
-    return {
-      toxinMitigation: purchased.has("enzyme-membrane") ? 0.45 : 1,
-    };
-  }, [purchasedUpgrades]);
+  const prestigeEffects = useMemo(
+    () => calculatePrestigeEffects(purchasedUpgrades),
+    [purchasedUpgrades],
+  );
 
   const networkHealth = useMemo(() => {
     const strainPenalty = Math.min(
@@ -337,21 +310,6 @@ const App = () => {
                 </svg>
 
                 {discoveredNodes.map((node) => {
-                  const colorMap: Record<NodeType, string> = {
-                    heart: "from-purple-500 to-indigo-500",
-                    junction: "from-slate-200 to-purple-200",
-                    water: "from-cyan-400 to-sky-400",
-                    carbon: "from-slate-300 to-slate-100",
-                    nutrient: "from-lime-400 to-amber-300",
-                    ancient: "from-amber-400 to-purple-300",
-                    artery: "from-purple-300 to-cyan-200",
-                    enzyme: "from-emerald-300 to-lime-300",
-                    spore: "from-amber-300 to-rose-200",
-                    toxic: node.purified ? "from-emerald-400 to-cyan-400" : "from-rose-500 to-amber-500",
-                    rival: "from-slate-200 to-red-300",
-                    spring: "from-cyan-300 to-emerald-300",
-                  };
-
                   const pulse = node.type === "heart" ? "animate-pulse" : "";
 
                   return (
@@ -361,7 +319,7 @@ const App = () => {
                       style={{ left: `${node.position.x}%`, top: `${node.position.y}%` }}
                     >
                       <div
-                        className={`relative rounded-full px-3 py-2 bg-gradient-to-r ${colorMap[node.type]} text-soil-900 shadow-lg ${pulse}`}
+                        className={`relative rounded-full px-3 py-2 bg-gradient-to-r ${getNodeGradient(node)} text-soil-900 shadow-lg ${pulse}`}
                       >
                         <p className="text-xs font-semibold">{node.name}</p>
                         <p className="text-[11px] text-soil-800/80">LV {node.upgradeLevel + 1}</p>

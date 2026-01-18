@@ -1,81 +1,54 @@
-name: Deploy to GitHub Pages
+name: Deploy GitHub Pages on Tag
 
-# Build the site and publish to GitHub Pages using the modern, non-deprecated actions
-# Trigger: only run on tag pushes that start with `v` (e.g. `v1.0.0`).
 on:
   push:
-    tags: ['v*']
-
-permissions:
-  # This workflow publishes a static site by pushing the built `dist/` to the
-  # `gh-pages` branch. `contents: write` is the minimum required permission.
-  contents: write
-
-concurrency:
-  group: "deploy-pages-mycelial-empire"
-  cancel-in-progress: true
+    tags:
+      - 'v*'
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment: github-pages
-
+    permissions:
+      contents: read
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v6
         with:
-          node-version: '20'
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build (Vite)
+      - name: Build
         env:
-          # explicit base for GitHub Pages; can be overridden by VITE_BASE if needed
           VITE_BASE: "/mycelial-empire/"
         run: npm run build --if-present
 
-      - name: Deploy diagnostics (helpful hints if auth is missing)
-        env:
-          PAGES_DEPLOY_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-        run: |
-          echo "--- deploy diagnostics ---"
-          if [ -n "$PAGES_DEPLOY_TOKEN" ]; then
-            echo "PAGES_DEPLOY_TOKEN: present"
-          else
-            echo "PAGES_DEPLOY_TOKEN: missing"
-          fi
-          if [ -n "$DEPLOY_KEY" ]; then
-            echo "DEPLOY_KEY (secret): present"
-          else
-            echo "DEPLOY_KEY (secret): missing"
-          fi
-          echo "If authentication fails the Action will exit with a helpful message below and docs link."
-
-      - name: Deploy to GitHub Pages (push to gh-pages)
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          keep_files: false
-          # Prefer an explicit secret token when available (matches pattern used in other repos)
-          github_token: ${{ secrets.PAGES_DEPLOY_TOKEN || secrets.GH_PAGES || github.token }}
-          # explicit commit message for traceability
-          commit_message: "chore(pages): deploy ${{ github.ref }} from ${{ github.workflow }}"
+          path: ./dist
 
-      - name: Deploy troubleshooting note
-        if: failure()
-        run: |
-          echo "ERROR: deployment failed due to missing deploy key or token."
-          echo "Common fixes:"
-          echo "  - Add a repository secret named 'PAGES_DEPLOY_TOKEN' containing a Personal Access Token (repo scope for private repos, public_repo for public repos)."
-          echo "  - Or add a Deploy key under repository Settings → Deploy keys and configure it for write access."
-          echo "  - Ensure Actions are allowed to create or update branches in repository settings (Organization policies may restrict GITHUB_TOKEN)."
-          echo "Example working workflow (reference): https://github.com/deadronos/neon-defense-3d/blob/main/.github/workflows/deploy-on-tag.yml"
-          exit 1
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 

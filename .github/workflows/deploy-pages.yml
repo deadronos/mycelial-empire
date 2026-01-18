@@ -7,9 +7,9 @@ on:
     tags: ['v*']
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  # This workflow publishes a static site by pushing the built `dist/` to the
+  # `gh-pages` branch. `contents: write` is the minimum required permission.
+  contents: write
 
 concurrency:
   group: "deploy-pages-mycelial-empire"
@@ -39,10 +39,12 @@ jobs:
           VITE_BASE: "/mycelial-empire/"
         run: npm run build --if-present
 
-      - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Deploy to GitHub Pages (push to gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./dist
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          # keep history so users can inspect past deployments if needed
+          keep_files: false
+          # uses the automatically provided GITHUB_TOKEN
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1

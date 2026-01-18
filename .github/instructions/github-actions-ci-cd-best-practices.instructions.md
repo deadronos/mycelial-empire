@@ -65,7 +65,7 @@ jobs:
           zip -r dist.zip dist
           echo "path=dist.zip" >> "$GITHUB_OUTPUT"
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: my-app-build
           path: dist.zip
@@ -77,7 +77,7 @@ jobs:
     environment: staging
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: my-app-build
       - name: Deploy to Staging
@@ -323,7 +323,7 @@ jobs:
   - **Use Cases:** Build outputs (executables, compiled code, Docker images), test reports (JUnit XML, HTML reports), code coverage reports, security scan results, generated documentation, static website builds.
   - **Limitations:** Artifacts are immutable once uploaded. Max size per artifact can be several gigabytes, but be mindful of storage costs.
 - **Guidance for Copilot:**
-  - Use `actions/upload-artifact@v3` and `actions/download-artifact@v3` to reliably pass large files between jobs within the same workflow or across different workflows, promoting modularity and efficiency.
+  - Use `actions/upload-artifact@v4` and `actions/download-artifact@v4` to reliably pass large files between jobs within the same workflow or across different workflows, promoting modularity and efficiency.
   - Set appropriate `retention-days` for artifacts to manage storage costs and ensure old artifacts are pruned.
   - Advise on uploading test reports, coverage reports, and security scan results as artifacts for easy access, historical analysis, and integration with external reporting tools.
   - Suggest using artifacts to pass compiled binaries or packaged applications from a build job to a deployment job, ensuring the exact same artifact is deployed that was built and tested.

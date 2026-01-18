@@ -1,10 +1,10 @@
 name: Deploy to GitHub Pages
 
 # Build the site and publish to GitHub Pages using the modern, non-deprecated actions
+# Trigger: only run on tag pushes that start with `v` (e.g. `v1.0.0`).
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch: {}
+    tags: ['v*']
 
 permissions:
   contents: read

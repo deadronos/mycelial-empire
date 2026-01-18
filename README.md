@@ -35,6 +35,25 @@ npm install
 npm run dev
 ```
 
+### Previewing the GitHub Pages build 🚀
+
+- **Production URL:** `https://deadronos.github.io/mycelial-empire/`
+- **Preview locally (POSIX):**
+
+```bash
+VITE_BASE=/mycelial-empire/ npm run build
+npx serve dist
+```
+
+- **Preview locally (PowerShell):**
+
+```powershell
+$env:VITE_BASE = '/mycelial-empire/'; npm run build
+npx serve dist
+```
+
+- **Notes:** CI sets `VITE_BASE=/mycelial-empire/` for the Pages workflow; override with `VITE_BASE` if you need a different base.
+
 ### Scripts
 
 - `npm run dev`: Start development server.
@@ -46,7 +65,7 @@ npm run dev
 
 ## Project Structure
 
-```
+```text
 src/
  ├─ App.tsx           # Main game logic, state, and UI rendering (Prototype Monolith)
  ├─ main.tsx          # Application entry point

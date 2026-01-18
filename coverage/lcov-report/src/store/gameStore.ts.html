@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/App.tsx</title>
+    <title>Code coverage report for src/store/gameStore.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> App.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/store</a> gameStore.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">87.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/49</span>
+                <span class='fraction'>158/180</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">71.81% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/49</span>
+                <span class='fraction'>79/110</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>46/46</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">87.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/40</span>
+                <span class='fraction'>135/154</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -500,7 +500,175 @@
 <a name='L435'></a><a href='#L435'>435</a>
 <a name='L436'></a><a href='#L436'>436</a>
 <a name='L437'></a><a href='#L437'>437</a>
-<a name='L438'></a><a href='#L438'>438</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L438'></a><a href='#L438'>438</a>
+<a name='L439'></a><a href='#L439'>439</a>
+<a name='L440'></a><a href='#L440'>440</a>
+<a name='L441'></a><a href='#L441'>441</a>
+<a name='L442'></a><a href='#L442'>442</a>
+<a name='L443'></a><a href='#L443'>443</a>
+<a name='L444'></a><a href='#L444'>444</a>
+<a name='L445'></a><a href='#L445'>445</a>
+<a name='L446'></a><a href='#L446'>446</a>
+<a name='L447'></a><a href='#L447'>447</a>
+<a name='L448'></a><a href='#L448'>448</a>
+<a name='L449'></a><a href='#L449'>449</a>
+<a name='L450'></a><a href='#L450'>450</a>
+<a name='L451'></a><a href='#L451'>451</a>
+<a name='L452'></a><a href='#L452'>452</a>
+<a name='L453'></a><a href='#L453'>453</a>
+<a name='L454'></a><a href='#L454'>454</a>
+<a name='L455'></a><a href='#L455'>455</a>
+<a name='L456'></a><a href='#L456'>456</a>
+<a name='L457'></a><a href='#L457'>457</a>
+<a name='L458'></a><a href='#L458'>458</a>
+<a name='L459'></a><a href='#L459'>459</a>
+<a name='L460'></a><a href='#L460'>460</a>
+<a name='L461'></a><a href='#L461'>461</a>
+<a name='L462'></a><a href='#L462'>462</a>
+<a name='L463'></a><a href='#L463'>463</a>
+<a name='L464'></a><a href='#L464'>464</a>
+<a name='L465'></a><a href='#L465'>465</a>
+<a name='L466'></a><a href='#L466'>466</a>
+<a name='L467'></a><a href='#L467'>467</a>
+<a name='L468'></a><a href='#L468'>468</a>
+<a name='L469'></a><a href='#L469'>469</a>
+<a name='L470'></a><a href='#L470'>470</a>
+<a name='L471'></a><a href='#L471'>471</a>
+<a name='L472'></a><a href='#L472'>472</a>
+<a name='L473'></a><a href='#L473'>473</a>
+<a name='L474'></a><a href='#L474'>474</a>
+<a name='L475'></a><a href='#L475'>475</a>
+<a name='L476'></a><a href='#L476'>476</a>
+<a name='L477'></a><a href='#L477'>477</a>
+<a name='L478'></a><a href='#L478'>478</a>
+<a name='L479'></a><a href='#L479'>479</a>
+<a name='L480'></a><a href='#L480'>480</a>
+<a name='L481'></a><a href='#L481'>481</a>
+<a name='L482'></a><a href='#L482'>482</a>
+<a name='L483'></a><a href='#L483'>483</a>
+<a name='L484'></a><a href='#L484'>484</a>
+<a name='L485'></a><a href='#L485'>485</a>
+<a name='L486'></a><a href='#L486'>486</a>
+<a name='L487'></a><a href='#L487'>487</a>
+<a name='L488'></a><a href='#L488'>488</a>
+<a name='L489'></a><a href='#L489'>489</a>
+<a name='L490'></a><a href='#L490'>490</a>
+<a name='L491'></a><a href='#L491'>491</a>
+<a name='L492'></a><a href='#L492'>492</a>
+<a name='L493'></a><a href='#L493'>493</a>
+<a name='L494'></a><a href='#L494'>494</a>
+<a name='L495'></a><a href='#L495'>495</a>
+<a name='L496'></a><a href='#L496'>496</a>
+<a name='L497'></a><a href='#L497'>497</a>
+<a name='L498'></a><a href='#L498'>498</a>
+<a name='L499'></a><a href='#L499'>499</a>
+<a name='L500'></a><a href='#L500'>500</a>
+<a name='L501'></a><a href='#L501'>501</a>
+<a name='L502'></a><a href='#L502'>502</a>
+<a name='L503'></a><a href='#L503'>503</a>
+<a name='L504'></a><a href='#L504'>504</a>
+<a name='L505'></a><a href='#L505'>505</a>
+<a name='L506'></a><a href='#L506'>506</a>
+<a name='L507'></a><a href='#L507'>507</a>
+<a name='L508'></a><a href='#L508'>508</a>
+<a name='L509'></a><a href='#L509'>509</a>
+<a name='L510'></a><a href='#L510'>510</a>
+<a name='L511'></a><a href='#L511'>511</a>
+<a name='L512'></a><a href='#L512'>512</a>
+<a name='L513'></a><a href='#L513'>513</a>
+<a name='L514'></a><a href='#L514'>514</a>
+<a name='L515'></a><a href='#L515'>515</a>
+<a name='L516'></a><a href='#L516'>516</a>
+<a name='L517'></a><a href='#L517'>517</a>
+<a name='L518'></a><a href='#L518'>518</a>
+<a name='L519'></a><a href='#L519'>519</a>
+<a name='L520'></a><a href='#L520'>520</a>
+<a name='L521'></a><a href='#L521'>521</a>
+<a name='L522'></a><a href='#L522'>522</a>
+<a name='L523'></a><a href='#L523'>523</a>
+<a name='L524'></a><a href='#L524'>524</a>
+<a name='L525'></a><a href='#L525'>525</a>
+<a name='L526'></a><a href='#L526'>526</a>
+<a name='L527'></a><a href='#L527'>527</a>
+<a name='L528'></a><a href='#L528'>528</a>
+<a name='L529'></a><a href='#L529'>529</a>
+<a name='L530'></a><a href='#L530'>530</a>
+<a name='L531'></a><a href='#L531'>531</a>
+<a name='L532'></a><a href='#L532'>532</a>
+<a name='L533'></a><a href='#L533'>533</a>
+<a name='L534'></a><a href='#L534'>534</a>
+<a name='L535'></a><a href='#L535'>535</a>
+<a name='L536'></a><a href='#L536'>536</a>
+<a name='L537'></a><a href='#L537'>537</a>
+<a name='L538'></a><a href='#L538'>538</a>
+<a name='L539'></a><a href='#L539'>539</a>
+<a name='L540'></a><a href='#L540'>540</a>
+<a name='L541'></a><a href='#L541'>541</a>
+<a name='L542'></a><a href='#L542'>542</a>
+<a name='L543'></a><a href='#L543'>543</a>
+<a name='L544'></a><a href='#L544'>544</a>
+<a name='L545'></a><a href='#L545'>545</a>
+<a name='L546'></a><a href='#L546'>546</a>
+<a name='L547'></a><a href='#L547'>547</a>
+<a name='L548'></a><a href='#L548'>548</a>
+<a name='L549'></a><a href='#L549'>549</a>
+<a name='L550'></a><a href='#L550'>550</a>
+<a name='L551'></a><a href='#L551'>551</a>
+<a name='L552'></a><a href='#L552'>552</a>
+<a name='L553'></a><a href='#L553'>553</a>
+<a name='L554'></a><a href='#L554'>554</a>
+<a name='L555'></a><a href='#L555'>555</a>
+<a name='L556'></a><a href='#L556'>556</a>
+<a name='L557'></a><a href='#L557'>557</a>
+<a name='L558'></a><a href='#L558'>558</a>
+<a name='L559'></a><a href='#L559'>559</a>
+<a name='L560'></a><a href='#L560'>560</a>
+<a name='L561'></a><a href='#L561'>561</a>
+<a name='L562'></a><a href='#L562'>562</a>
+<a name='L563'></a><a href='#L563'>563</a>
+<a name='L564'></a><a href='#L564'>564</a>
+<a name='L565'></a><a href='#L565'>565</a>
+<a name='L566'></a><a href='#L566'>566</a>
+<a name='L567'></a><a href='#L567'>567</a>
+<a name='L568'></a><a href='#L568'>568</a>
+<a name='L569'></a><a href='#L569'>569</a>
+<a name='L570'></a><a href='#L570'>570</a>
+<a name='L571'></a><a href='#L571'>571</a>
+<a name='L572'></a><a href='#L572'>572</a>
+<a name='L573'></a><a href='#L573'>573</a>
+<a name='L574'></a><a href='#L574'>574</a>
+<a name='L575'></a><a href='#L575'>575</a>
+<a name='L576'></a><a href='#L576'>576</a>
+<a name='L577'></a><a href='#L577'>577</a>
+<a name='L578'></a><a href='#L578'>578</a>
+<a name='L579'></a><a href='#L579'>579</a>
+<a name='L580'></a><a href='#L580'>580</a>
+<a name='L581'></a><a href='#L581'>581</a>
+<a name='L582'></a><a href='#L582'>582</a>
+<a name='L583'></a><a href='#L583'>583</a>
+<a name='L584'></a><a href='#L584'>584</a>
+<a name='L585'></a><a href='#L585'>585</a>
+<a name='L586'></a><a href='#L586'>586</a>
+<a name='L587'></a><a href='#L587'>587</a>
+<a name='L588'></a><a href='#L588'>588</a>
+<a name='L589'></a><a href='#L589'>589</a>
+<a name='L590'></a><a href='#L590'>590</a>
+<a name='L591'></a><a href='#L591'>591</a>
+<a name='L592'></a><a href='#L592'>592</a>
+<a name='L593'></a><a href='#L593'>593</a>
+<a name='L594'></a><a href='#L594'>594</a>
+<a name='L595'></a><a href='#L595'>595</a>
+<a name='L596'></a><a href='#L596'>596</a>
+<a name='L597'></a><a href='#L597'>597</a>
+<a name='L598'></a><a href='#L598'>598</a>
+<a name='L599'></a><a href='#L599'>599</a>
+<a name='L600'></a><a href='#L600'>600</a>
+<a name='L601'></a><a href='#L601'>601</a>
+<a name='L602'></a><a href='#L602'>602</a>
+<a name='L603'></a><a href='#L603'>603</a>
+<a name='L604'></a><a href='#L604'>604</a>
+<a name='L605'></a><a href='#L605'>605</a>
+<a name='L606'></a><a href='#L606'>606</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -525,12 +693,376 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">60x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -540,77 +1072,45 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -621,292 +1121,151 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">192x</span>
+<span class="cline-any cline-yes">176x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -914,466 +1273,611 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
-  Activity,
-  AlertTriangle,
-  ArrowUpCircle,
-  BadgeCheck,
-  Crown,
-  Flame,
-  Leaf,
-  Map as MapIcon,
-  Network,
-  ShieldCheck,
-  Sparkles,
-  TestTubeDiagonal,
-  Trees,
-  Zap,
-} from "lucide-react";
-import type { ReactNode } from "react";
-import { useEffect, useMemo } from "react";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { create } from "zustand";
 &nbsp;
-import { format, prestigeUpgrades, useGameStore } from "./store/gameStore";
-import type { NodeType, ResourceKey } from "./types/game";
+import type { Edge, Node, PrestigeUpgrade, ResourceKey, Resources } from "../types/game";
 &nbsp;
-/**
- * Order in which resources are displayed.
- */
-const resourceOrder: ResourceKey[] = <span class="cstat-no" title="statement not covered" >["sugar", "water", "carbon", "nutrients", "spores"];</span>
+interface GameState {
+  resources: Resources;
+  nodes: Node[];
+  edges: Edge[];
+  generatedNodes: number;
+  flowRate: number;
+  pulse: number;
+  prestigeLevel: number;
+  purchasedUpgrades: string[];
+  events: string[];
 &nbsp;
-/**
- * Metadata for each resource type including label, color, and icon.
- */
-const resourceCopy: Record&lt;ResourceKey, { label: string; color: string; icon: ReactNode }&gt; = <span class="cstat-no" title="statement not covered" >{</span>
-  sugar: { label: "Sugar", color: "text-purple-200", icon: &lt;Sparkles className="h-4 w-4 text-purple-300" /&gt; },
-  water: { label: "Water", color: "text-cyan-200", icon: &lt;DropletIcon /&gt; },
-  carbon: { label: "Carbon", color: "text-slate-200", icon: &lt;Flame className="h-4 w-4 text-slate-200" /&gt; },
-  nutrients: { label: "Nutrients", color: "text-lime-200", icon: &lt;Leaf className="h-4 w-4 text-lime-200" /&gt; },
-  spores: { label: "Spore Dust", color: "text-amber-200", icon: &lt;Trees className="h-4 w-4 text-amber-200" /&gt; },
+  // Actions
+  addEvent: (message: string) =&gt; void;
+  tick: () =&gt; void;
+  explore: () =&gt; void;
+  upgrade: () =&gt; void;
+  reinforce: () =&gt; void;
+  purify: () =&gt; void;
+  prestige: () =&gt; void;
+  purchaseUpgrade: (id: PrestigeUpgrade["id"]) =&gt; void;
+&nbsp;
+  // Helpers exposed for UI
+  resetNetwork: (sporeGain: number) =&gt; void;
+}
+&nbsp;
+const initialResources: Resources = {
+  sugar: 120,
+  water: 85,
+  carbon: 70,
+  nutrients: 55,
+  spores: 4,
 };
 &nbsp;
-/**
- * Renders a rotated map icon representing a droplet.
- *
- * @returns A JSX element containing the icon.
- */
-function <span class="fstat-no" title="function not covered" >DropletIcon() {</span>
-<span class="cstat-no" title="statement not covered" >  return &lt;MapIcon className="h-4 w-4 text-cyan-200 rotate-90" /&gt;;</span>
-}
+const initialNodes: Node[] = [
+  {
+    id: "heart",
+    name: "Heart (Core)",
+    type: "heart",
+    position: { x: 50, y: 58 },
+    yield: { sugar: 4 },
+    discovered: true,
+    upgradeLevel: 1,
+    description: "Pulsing core that routes every resource and keeps the colony alive.",
+    connections: ["junction-a"],
+  },
+  {
+    id: "junction-a",
+    name: "Central Junction",
+    type: "junction",
+    position: { x: 50, y: 40 },
+    yield: { sugar: 0 },
+    discovered: true,
+    upgradeLevel: 1,
+    description: "First branching point; processes resources into sugar once upgraded.",
+    connections: ["heart", "water-pocket", "carbon-vent", "nutrient-vein"],
+  },
+  {
+    id: "water-pocket",
+    name: "Water Pocket",
+    type: "water",
+    position: { x: 28, y: 26 },
+    yield: { water: 12 },
+    discovered: true,
+    upgradeLevel: 0,
+    description: "Cool, iridescent pocket leeching moisture into the network.",
+    connections: ["junction-a"],
+  },
+  {
+    id: "carbon-vent",
+    name: "Carbon Vent",
+    type: "carbon",
+    position: { x: 72, y: 26 },
+    yield: { carbon: 10 },
+    discovered: true,
+    upgradeLevel: 0,
+    description: "Charcoal-rich vein exhaling slow plumes of carbon.",
+    connections: ["junction-a"],
+  },
+  {
+    id: "nutrient-vein",
+    name: "Nutrient Vein",
+    type: "nutrient",
+    position: { x: 62, y: 16 },
+    yield: { nutrients: 9 },
+    discovered: true,
+    upgradeLevel: 0,
+    description: "A warm, loamy seam humming with trace minerals.",
+    connections: ["junction-a"],
+  },
+  {
+    id: "ancient-root",
+    name: "Ancient Root",
+    type: "ancient",
+    position: { x: 35, y: 14 },
+    yield: { sugar: 3, spores: 0.4 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "An elder root that remembers storms; grants spores when tapped.",
+    connections: ["water-pocket"],
+  },
+  {
+    id: "deep-spring",
+    name: "Deep Spring",
+    type: "spring",
+    position: { x: 18, y: 40 },
+    yield: { water: 18, sugar: 1 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Pressurized aquifer filled with mineral-rich water.",
+    connections: ["water-pocket"],
+  },
+  {
+    id: "toxic-soil",
+    name: "Toxic Soil",
+    type: "toxic",
+    position: { x: 78, y: 40 },
+    yield: { sugar: -1 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Sickly patch that corrodes hyphae until purified.",
+    connections: ["carbon-vent"],
+  },
+  {
+    id: "rival-colony",
+    name: "Rival Colony",
+    type: "rival",
+    position: { x: 60, y: 8 },
+    yield: { sugar: -2 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Aggressive neighbor siphoning sugar unless contained.",
+    connections: ["nutrient-vein"],
+  },
+  {
+    id: "artery-nexus",
+    name: "Artery Nexus",
+    type: "artery",
+    position: { x: 32, y: 48 },
+    yield: { sugar: 2 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Thicker bundle primed to branch into new chambers.",
+    connections: ["heart"],
+  },
+  {
+    id: "spore-bloom",
+    name: "Spore Bloom",
+    type: "spore",
+    position: { x: 82, y: 18 },
+    yield: { spores: 0.7, sugar: 1.6 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Pulsing puffball that feeds prestige cycles.",
+    connections: ["carbon-vent"],
+  },
+  {
+    id: "enzyme-pool",
+    name: "Enzyme Pool",
+    type: "enzyme",
+    position: { x: 12, y: 22 },
+    yield: { nutrients: 7, sugar: 1 },
+    discovered: false,
+    upgradeLevel: 0,
+    description: "Soup of catalysts that helps neutralize toxins.",
+    connections: ["water-pocket"],
+  },
+];
+&nbsp;
+const initialEdges: Edge[] = [
+  { id: "e-heart", from: "heart", to: "junction-a", capacity: 52, strain: 0.2, decay: 0.01 },
+  { id: "e-water", from: "junction-a", to: "water-pocket", capacity: 26, strain: 0.35, decay: 0.02 },
+  { id: "e-carbon", from: "junction-a", to: "carbon-vent", capacity: 24, strain: 0.4, decay: 0.02 },
+  { id: "e-nutrient", from: "junction-a", to: "nutrient-vein", capacity: 20, strain: 0.32, decay: 0.02 },
+  { id: "e-ancient", from: "water-pocket", to: "ancient-root", capacity: 18, strain: 0, decay: 0.03 },
+  { id: "e-spring", from: "water-pocket", to: "deep-spring", capacity: 18, strain: 0, decay: 0.03 },
+  { id: "e-toxic", from: "carbon-vent", to: "toxic-soil", capacity: 16, strain: 0, decay: 0.03 },
+  { id: "e-rival", from: "nutrient-vein", to: "rival-colony", capacity: 16, strain: 0, decay: 0.03 },
+  { id: "e-artery", from: "heart", to: "artery-nexus", capacity: 30, strain: 0, decay: 0.02 },
+  { id: "e-spore", from: "carbon-vent", to: "spore-bloom", capacity: 16, strain: 0, decay: 0.03 },
+  { id: "e-enzyme", from: "water-pocket", to: "enzyme-pool", capacity: 18, strain: 0, decay: 0.03 },
+];
+&nbsp;
+const dynamicTemplates: Omit&lt;Node, "id" | "position" | "connections" | "discovered"&gt;[] = [
+  {
+    name: "Crystalline Carbon",
+    type: "carbon",
+    yield: { carbon: 14, sugar: 1.4 },
+    upgradeLevel: 0,
+    description: "Shards of charcoal glint with trapped energy.",
+  },
+  {
+    name: "Capillary Junction",
+    type: "artery",
+    yield: { sugar: 2.2 },
+    upgradeLevel: 0,
+    description: "A broad hub ready to branch into new caverns.",
+  },
+  {
+    name: "Verdant Compost",
+    type: "nutrient",
+    yield: { nutrients: 13 },
+    upgradeLevel: 0,
+    description: "Steaming compost thick with minerals.",
+  },
+  {
+    name: "Mineral Seep",
+    type: "water",
+    yield: { water: 15, sugar: 0.8 },
+    upgradeLevel: 0,
+    description: "Warm flow that keeps hyphae slick and pliable.",
+  },
+  {
+    name: "Spore Orchard",
+    type: "spore",
+    yield: { spores: 0.9, sugar: 1.8 },
+    upgradeLevel: 0,
+    description: "A ring of puffballs that remembers ancient cycles.",
+  },
+  {
+    name: "Catalyst Vat",
+    type: "enzyme",
+    yield: { nutrients: 6, sugar: 1.6 },
+    upgradeLevel: 0,
+    description: "Enzymes brew quietly, shielding hyphae from rot.",
+  },
+];
+&nbsp;
+const prestigeUpgrades: PrestigeUpgrade[] = [
+  {
+    id: "rich-mycelium",
+    name: "Rich Mycelium",
+    description: "+20% yield from every pocket and processor.",
+    cost: 3,
+  },
+  {
+    id: "tensile-hyphae",
+    name: "Tensile Hyphae",
+    description: "Edge capacity grows sturdier, easing clog risk.",
+    cost: 4,
+  },
+  {
+    id: "enzyme-membrane",
+    name: "Enzyme Membrane",
+    description: "Toxic soil drains less sugar and recovers faster.",
+    cost: 4,
+  },
+  {
+    id: "fermentation",
+    name: "Fermentation Vats",
+    description: "Carbon + Water conversion yields +25% sugar.",
+    cost: 5,
+  },
+  {
+    id: "scent-trails",
+    name: "Scent Trails",
+    description: "Exploring deep soil costs 25% less sugar.",
+    cost: 3,
+  },
+  {
+    id: "spore-alchemy",
+    name: "Spore Alchemy",
+    description: "Prestige rewards +30% extra spores.",
+    cost: 6,
+  },
+];
 &nbsp;
 /**
- * The main application component for Mycelial Empire.
- *
- * Manages the game state including resources, nodes, edges, and game loop.
- * Renders the UI for the game including the header, resource panel, command panel,
- * prestige panel, event log, and the network map.
- *
- * @returns The rendered application component.
+ * Formatter for numbers to have simplified US locale formatting with max 1 decimal.
  */
-function <span class="fstat-no" title="function not covered" >App() {</span>
-  const {
-    resources,
-    nodes,
-    edges,
-    flowRate,
-    pulse,
-    prestigeLevel,
-    purchasedUpgrades,
-    events,
-    tick,
-    explore,
-    upgrade,
-    reinforce,
-    purify,
-    prestige,
-    purchaseUpgrade,
-<span class="cstat-no" title="statement not covered" >  } = useGameStore();</span>
+const formatter = new Intl.NumberFormat("en-US", {
+  maximumFractionDigits: 1,
+  minimumFractionDigits: 0,
+});
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-    const interval = <span class="cstat-no" title="statement not covered" >window.setInterval(tick, 1200);</span>
-<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >w</span>indow.clearInterval(interval);</span></span>
-  }, [tick]);
+/**
+ * Formats a number for display, ensuring it is non-negative.
+ *
+ * @param value - The number to format.
+ * @returns A string representation of the number.
+ */
+export const format = (value: number) =&gt; formatter.format(Math.max(0, value));
 &nbsp;
-  const <span class="cstat-no" title="statement not covered" >nodeMap = useMemo(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >O</span>bject.fromEntries(nodes.map(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; <span class="cstat-no" title="statement not covered" >[node.id, node])</span>), [</span>nodes]);</span>
+export const useGameStore = create&lt;GameState&gt;((set, get) =&gt; ({
+  resources: { ...initialResources },
+  nodes: initialNodes,
+  edges: initialEdges,
+  generatedNodes: 0,
+  flowRate: 0,
+  pulse: 0,
+  prestigeLevel: 0,
+  purchasedUpgrades: [],
+  events: [
+    "Heart awakens beneath the forest floor.",
+    "Hyphae senses moisture veins nearby.",
+    "Mineral shimmer hints at deeper secrets.",
+  ],
 &nbsp;
-  const <span class="cstat-no" title="statement not covered" >cloggedEdges = useMemo(</span>
-<span class="fstat-no" title="function not covered" >    () =&gt; <span class="cstat-no" title="statement not covered" >e</span>dges.filter(<span class="fstat-no" title="function not covered" >(e</span>dge) =&gt; <span class="cstat-no" title="statement not covered" >edge.strain &gt; 1 &amp;&amp; nodeMap[edge.from]?.discovered &amp;&amp; nodeMap[edge.to]?.discovered)</span>,</span>
-    [edges, nodeMap],
-  );
+  addEvent: (message) =&gt; set((state) =&gt; ({ events: [message, ...state.events].slice(0, 7) })),
 &nbsp;
-  const <span class="cstat-no" title="statement not covered" >prestigeEffects = useMemo(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-    const purchased = <span class="cstat-no" title="statement not covered" >new Set(purchasedUpgrades);</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
-      toxinMitigation: purchased.has("enzyme-membrane") ? 0.45 : 1,
+  tick: () =&gt; {
+    const { nodes, edges, purchasedUpgrades } = get();
+&nbsp;
+    // Calculate prestige effects
+    const purchased = new Set(purchasedUpgrades);
+    const prestigeEffects = {
+      resourceYield: purchased.has("rich-mycelium") ? <span class="branch-0 cbranch-no" title="branch not covered" >1.2 : 1</span>,
+      edgeCapacity: purchased.has("tensile-hyphae") ? <span class="branch-0 cbranch-no" title="branch not covered" >1.25 : 1</span>,
+      toxinMitigation: purchased.has("enzyme-membrane") ? <span class="branch-0 cbranch-no" title="branch not covered" >0.45 : 1</span>,
+      conversionBonus: purchased.has("fermentation") ? <span class="branch-0 cbranch-no" title="branch not covered" >1.25 : 1</span>,
+      sporeBonus: purchased.has("spore-alchemy") ? <span class="branch-0 cbranch-no" title="branch not covered" >1.3 : 1</span>,
     };
-  }, [purchasedUpgrades]);
 &nbsp;
-  const <span class="cstat-no" title="statement not covered" >networkHealth = useMemo(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-    const strainPenalty = <span class="cstat-no" title="statement not covered" >Math.min(</span>
-      35,
-      cloggedEdges.length * 6 + edges.reduce(<span class="fstat-no" title="function not covered" >(s</span>um, edge) =&gt; <span class="cstat-no" title="statement not covered" >sum + edge.strain * 4, 0</span>) / 8,
+    const nodeMap = Object.fromEntries(nodes.map((node) =&gt; [node.id, node]));
+    const calculateNodeYield = (node: Node) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!node.yield) <span class="cstat-no" title="statement not covered" >return {} as Partial&lt;Record&lt;ResourceKey, number&gt;&gt;;</span>
+      const multiplier = (1 + node.upgradeLevel * 0.35) * prestigeEffects.resourceYield;
+      return Object.fromEntries(
+        Object.entries(node.yield).map(([key, value]) =&gt; [key, (value ?? <span class="branch-1 cbranch-no" title="branch not covered" >0) * m</span>ultiplier]),
+      ) as Partial&lt;Record&lt;ResourceKey, number&gt;&gt;;
+    };
+&nbsp;
+    set((state) =&gt; {
+      const updatedResources = { ...state.resources };
+      let sugarGain = 0;
+      let flow = 0;
+&nbsp;
+      // Resource Accumulation
+      nodes.forEach((node) =&gt; {
+        if (!node.discovered) return;
+        const yieldValues = calculateNodeYield(node);
+        Object.entries(yieldValues).forEach(([key, value]) =&gt; {
+          if (key === "sugar") {
+            sugarGain += value ?? <span class="branch-1 cbranch-no" title="branch not covered" >0;</span>
+          } else {
+            const resourceKey = key as Exclude&lt;ResourceKey, "sugar"&gt;;
+            updatedResources[resourceKey] += value ?? <span class="branch-1 cbranch-no" title="branch not covered" >0;</span>
+          }
+          flow += value ?? <span class="branch-1 cbranch-no" title="branch not covered" >0;</span>
+        });
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === "ancient") {
+<span class="cstat-no" title="statement not covered" >          updatedResources.spores += 0.15 * prestigeEffects.sporeBonus;</span>
+<span class="cstat-no" title="statement not covered" >          sugarGain += 1.3;</span>
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === "spore") {
+<span class="cstat-no" title="statement not covered" >          updatedResources.spores += 0.25 * prestigeEffects.sporeBonus;</span>
+<span class="cstat-no" title="statement not covered" >          sugarGain += 1.1;</span>
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === "enzyme") {
+<span class="cstat-no" title="statement not covered" >          sugarGain += 0.4;</span>
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === "rival") {
+<span class="cstat-no" title="statement not covered" >          sugarGain -= 1.5;</span>
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (node.type === "toxic" &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!node.purified) {</span>
+<span class="cstat-no" title="statement not covered" >          sugarGain -= 1.1 * prestigeEffects.toxinMitigation;</span>
+        }
+      });
+&nbsp;
+      // Processing
+      const processingNodes = nodes.filter((node) =&gt; node.type === "junction" &amp;&amp; node.discovered);
+      const conversionPotential = Math.min(updatedResources.water * 0.08, updatedResources.carbon * 0.08, 6 * processingNodes.length);
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (conversionPotential &gt; 0) {
+        updatedResources.water -= conversionPotential * 0.65;
+        updatedResources.carbon -= conversionPotential * 0.65;
+        sugarGain += conversionPotential * (1.35 + processingNodes.length * 0.1) * prestigeEffects.conversionBonus;
+      }
+&nbsp;
+      // Maintenance
+      const activeEdgeCount = edges.filter((edge) =&gt; {
+        const from = nodeMap[edge.from];
+        const to = nodeMap[edge.to];
+        return from?.discovered &amp;&amp; to?.discovered;
+      }).length;
+      const maintenance = activeEdgeCount * 0.35 * (prestigeEffects.edgeCapacity &gt; 1 ? <span class="branch-0 cbranch-no" title="branch not covered" >0.9 : 1</span>);
+      const finalSugar = Math.max(0, updatedResources.sugar + sugarGain - maintenance);
+&nbsp;
+      // Edge Strain Calculation
+      const nextEdges = edges.map((edge) =&gt; {
+        const node = nodes.find((entry) =&gt; entry.id === edge.to);
+        const fromNode = nodes.find((entry) =&gt; entry.id === edge.from);
+        const active = node?.discovered &amp;&amp; fromNode?.discovered;
+        const yieldValues = node ? calculateNodeYield(node) : <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+        const throughput = Object.values(yieldValues).reduce((sum, value) =&gt; sum + (value ?? <span class="branch-1 cbranch-no" title="branch not covered" >0), 0</span>);
+        const toxicity = node?.type === "toxic" &amp;&amp; !node.purified ? 0.5 * prestigeEffects.toxinMitigation : 0;
+        const effectiveCapacity = edge.capacity * prestigeEffects.edgeCapacity;
+        const strain = active ? Math.min(1.6, throughput / effectiveCapacity + toxicity) : 0;
+        return { ...edge, strain };
+      });
+&nbsp;
+      return {
+        resources: { ...updatedResources, sugar: finalSugar },
+        flowRate: sugarGain - maintenance,
+        pulse: flow,
+        edges: nextEdges,
+      };
+    });
+  },
+&nbsp;
+  explore: () =&gt; {
+    const { resources, nodes, generatedNodes, purchasedUpgrades, addEvent } = get();
+&nbsp;
+    const purchased = new Set(purchasedUpgrades);
+    const exploreDiscount = purchased.has("scent-trails") ? <span class="branch-0 cbranch-no" title="branch not covered" >0.75 : 1</span>;
+    const exploreCost = Math.max(60, 120 * exploreDiscount);
+&nbsp;
+    if (resources.sugar &lt; exploreCost) {
+      addEvent(`Not enough sugar to explore deeper soil (${Math.ceil(exploreCost)} needed).`);
+      return;
+    }
+&nbsp;
+    const undiscovered = nodes.find((node) =&gt; !node.discovered);
+&nbsp;
+    if (undiscovered) {
+      set((state) =&gt; ({
+        resources: { ...state.resources, sugar: state.resources.sugar - exploreCost },
+        nodes: state.nodes.map((node) =&gt; (node.id === undiscovered.id ? { ...node, discovered: true } : node)),
+      }));
+      addEvent(`Hyphae breached a new chamber: ${undiscovered.name}.`);
+      return;
+    }
+&nbsp;
+    // Spawn dynamic node
+    const anchors = nodes.filter((node) =&gt; node.discovered &amp;&amp; node.type !== "rival");
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (anchors.length === 0) {
+<span class="cstat-no" title="statement not covered" >      addEvent("No stable anchor exists for deeper exploration.");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+    const anchor = anchors[Math.floor(Math.random() * anchors.length)];
+&nbsp;
+    const template = dynamicTemplates[generatedNodes % dynamicTemplates.length];
+    const id = `${template.type}-${generatedNodes + 1}`;
+    const jitterPosition = (value: number) =&gt; Math.min(92, Math.max(8, value + (Math.random() * 18 - 9)));
+    const position = { x: jitterPosition(anchor.position.x), y: jitterPosition(anchor.position.y) };
+&nbsp;
+    // Check if tensile-hyphae is active
+    const capacityBoost = purchased.has("tensile-hyphae") ? <span class="branch-0 cbranch-no" title="branch not covered" >4 : 0</span>;
+&nbsp;
+    const newNode: Node = {
+      ...template,
+      id,
+      position,
+      discovered: true,
+      connections: [anchor.id],
+      yield: template.yield,
+      upgradeLevel: template.upgradeLevel,
+      description: template.description,
+    };
+&nbsp;
+    const newEdge: Edge = {
+      id: `e-${anchor.id}-${id}-${generatedNodes}`,
+      from: anchor.id,
+      to: id,
+      capacity: 15 + Math.round(Math.random() * 12) + capacityBoost,
+      strain: 0,
+      decay: 0.03,
+    };
+&nbsp;
+    set((state) =&gt; ({
+      resources: { ...state.resources, sugar: state.resources.sugar - exploreCost },
+      nodes: [...state.nodes.map((node) =&gt;
+        node.id === anchor.id ? { ...node, connections: [...node.connections, id] } : node
+      ), newNode],
+      edges: [...state.edges, newEdge],
+      generatedNodes: state.generatedNodes + 1,
+    }));
+    addEvent(`New pocket uncovered: ${newNode.name}.`);
+  },
+&nbsp;
+  upgrade: () =&gt; {
+    const { resources, nodes, addEvent } = get();
+&nbsp;
+    if (resources.sugar &lt; 90) {
+      addEvent("Insufficient sugar to upgrade a node.");
+      return;
+    }
+&nbsp;
+    const candidate = nodes.find(
+      (node) =&gt;
+        node.discovered &amp;&amp;
+        ["water", "carbon", "nutrient", "spring", "spore", "enzyme", "artery"].includes(node.type) &amp;&amp;
+        node.upgradeLevel &lt; 3,
     );
-    const toxinPenalty = <span class="cstat-no" title="statement not covered" >nodes.some(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; <span class="cstat-no" title="statement not covered" >node.type === "toxic" &amp;&amp; node.discovered &amp;&amp; !node.purified)</span></span>
-      ? 12 * prestigeEffects.toxinMitigation
-      : 0;
-    const rivalPenalty = <span class="cstat-no" title="statement not covered" >nodes.some(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; <span class="cstat-no" title="statement not covered" >node.type === "rival" &amp;&amp; node.discovered)</span> ? 4 : 0;</span>
-<span class="cstat-no" title="statement not covered" >    return Math.max(18, 100 - strainPenalty - toxinPenalty - rivalPenalty);</span>
-  }, [cloggedEdges.length, edges, nodes, prestigeEffects.toxinMitigation]);
 &nbsp;
-  const <span class="cstat-no" title="statement not covered" >networkPulse = useMemo(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >M</span>ath.max(0, pulse), [</span>pulse]);</span>
+    if (!candidate) {
+      addEvent("All resource pockets are tuned to their limit.");
+      return;
+    }
 &nbsp;
-  const buttons = <span class="cstat-no" title="statement not covered" >[</span>
-    { label: "Explore Soil", onClick: explore, icon: MapIcon, glow: "from-purple-500/50 to-cyan-400/40" },
-    { label: "Upgrade Node", onClick: upgrade, icon: ArrowUpCircle, glow: "from-lime-400/40 to-purple-400/30" },
-    {
-      label: "Reinforce Hyphae",
-      onClick: reinforce,
-      icon: ShieldCheck,
-      glow: "from-cyan-400/40 to-purple-400/30",
-    },
-    {
-      label: "Purify Toxins",
-      onClick: purify,
-      icon: TestTubeDiagonal,
-      glow: "from-amber-400/40 to-rose-400/30",
-    },
-  ];
+    set((state) =&gt; ({
+      resources: { ...state.resources, sugar: state.resources.sugar - 90 },
+      nodes: state.nodes.map((node) =&gt;
+        node.id === candidate.id
+          ? { ...node, upgradeLevel: node.upgradeLevel + 1, description: `${node.description} (refined)` }
+          : node,
+      ),
+    }));
+    addEvent(`${candidate.name} now channels resources 35% faster.`);
+  },
 &nbsp;
-  const discoveredNodes = <span class="cstat-no" title="statement not covered" >nodes.filter(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; <span class="cstat-no" title="statement not covered" >node.discovered)</span>;</span>
+  reinforce: () =&gt; {
+    const { resources, edges, addEvent } = get();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className="min-h-screen bg-soil-900 text-slate-100 relative overflow-hidden"&gt;
-      &lt;div className="absolute inset-0 pointer-events-none"&gt;
-        &lt;div className="absolute -left-10 top-10 w-72 h-72 bg-purple-500 nebula-blur" /&gt;
-        &lt;div className="absolute right-10 top-20 w-64 h-64 bg-cyan-400 nebula-blur" /&gt;
-        &lt;div className="absolute left-20 bottom-8 w-72 h-72 bg-lime-400 nebula-blur" /&gt;
-      &lt;/div&gt;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (resources.sugar &lt; 70) {
+<span class="cstat-no" title="statement not covered" >      addEvent("Reinforcement requires more sugar reserves.");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
 &nbsp;
-      &lt;div className="max-w-7xl mx-auto px-6 py-10 relative"&gt;
-        &lt;header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8"&gt;
-          &lt;div&gt;
-            &lt;p className="text-xs uppercase tracking-[0.28em] text-purple-200/80"&gt;Mycelial Empire&lt;/p&gt;
-            &lt;h1 className="text-4xl md:text-5xl font-semibold text-slate-50 drop-shadow-hyphae"&gt;
-              Beneath the canopy, the network never sleeps.
-            &lt;/h1&gt;
-            &lt;p className="text-slate-300 mt-2 max-w-2xl"&gt;
-              Grow luminous hyphae, siphon hidden resources, and balance pressure before the colony collapses.
-            &lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div className="blur-card px-5 py-4 rounded-2xl flex gap-6 items-center panel-sheen relative overflow-hidden"&gt;
-            &lt;div className="flex items-center gap-3"&gt;
-              &lt;Network className="h-10 w-10 text-purple-300" /&gt;
-              &lt;div&gt;
-                &lt;p className="text-xs uppercase text-slate-300"&gt;Flow Rate&lt;/p&gt;
-                &lt;p className="text-2xl font-semibold text-purple-50"&gt;{format(flowRate)} /s&lt;/p&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div className="h-10 w-px bg-slate-600/40" /&gt;
-            &lt;div className="flex items-center gap-3"&gt;
-              &lt;ShieldCheck className="h-10 w-10 text-lime-300" /&gt;
-              &lt;div&gt;
-                &lt;p className="text-xs uppercase text-slate-300"&gt;Network Health&lt;/p&gt;
-                &lt;p className="text-2xl font-semibold text-lime-50"&gt;{Math.round(networkHealth)}%&lt;/p&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/header&gt;
+    const target = [...edges].sort((a, b) =&gt; b.strain - a.strain)[0];
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!target) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
-        &lt;div className="grid grid-cols-1 xl:grid-cols-[340px_1fr] gap-6"&gt;
-          &lt;div className="space-y-6"&gt;
-            &lt;section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden"&gt;
-              &lt;div className="flex items-center gap-3 mb-4"&gt;
-                &lt;Activity className="h-5 w-5 text-purple-300" /&gt;
-                &lt;p className="uppercase text-xs tracking-[0.3em] text-purple-200/80"&gt;Resources&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div className="grid grid-cols-2 gap-3"&gt;
-                {resourceOrder.map(<span class="fstat-no" title="function not covered" >(k</span>ey) =&gt; (
-<span class="cstat-no" title="statement not covered" >                  &lt;div</span>
-                    key={key}
-                    className="border border-slate-700/50 rounded-2xl px-3 py-3 bg-white/5 flex flex-col gap-1 shadow-panel"
-                  &gt;
-                    &lt;div className="flex items-center gap-2 text-xs text-slate-300"&gt;
-                      {resourceCopy[key].icon}
-                      &lt;span className="uppercase tracking-[0.25em] text-slate-400"&gt;{resourceCopy[key].label}&lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;p className={`text-2xl font-semibold ${resourceCopy[key].color}`}&gt;{format(resources[key])}&lt;/p&gt;
-                  &lt;/div&gt;
-                ))}
-              &lt;/div&gt;
-              &lt;div className="mt-4 text-sm text-slate-300"&gt;
-                Idle extraction channels {format(networkPulse)} flow/sec back to the Heart.
-              &lt;/div&gt;
-            &lt;/section&gt;
+    set((state) =&gt; ({
+      resources: { ...state.resources, sugar: state.resources.sugar - 70 },
+      edges: state.edges.map((edge) =&gt;
+        edge.id === target.id
+          ? { ...edge, capacity: edge.capacity + 6, strain: Math.max(0.2, edge.strain - 0.25), reinforced: true }
+          : edge,
+      ),
+    }));
+    addEvent(`Hyphae thickened along ${target.id}, easing pressure.`);
+  },
 &nbsp;
-            &lt;section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden"&gt;
-              &lt;div className="flex items-center gap-3 mb-4"&gt;
-                &lt;Zap className="h-5 w-5 text-cyan-300" /&gt;
-                &lt;p className="uppercase text-xs tracking-[0.3em] text-cyan-200/80"&gt;Commands&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div className="grid grid-cols-1 gap-3"&gt;
-                {buttons.map(<span class="fstat-no" title="function not covered" >({</span> icon: Icon, label, onClick, glow }) =&gt; (
-<span class="cstat-no" title="statement not covered" >                  &lt;button</span>
-                    key={label}
-                    onClick={onClick}
-                    className={`relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/70 px-4 py-3 text-left transition hover:-translate-y-0.5 hover:border-purple-400/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400`}
-                  &gt;
-                    &lt;div className={`absolute inset-0 bg-gradient-to-r ${glow} opacity-40`} /&gt;
-                    &lt;div className="relative flex items-center justify-between"&gt;
-                      &lt;div&gt;
-                        &lt;p className="text-sm font-semibold text-slate-100"&gt;{label}&lt;/p&gt;
-                        &lt;p className="text-xs text-slate-300"&gt;
-                          {label === "Explore Soil" &amp;&amp; "Reveal hidden pockets and junctions."}
-                          {label === "Upgrade Node" &amp;&amp; "Refine absorbers to pull faster."}
-                          {label === "Reinforce Hyphae" &amp;&amp; "Widen stressed connections."}
-                          {label === "Purify Toxins" &amp;&amp; "Cleanse corrupted soil to restore flow."}
-                        &lt;/p&gt;
-                      &lt;/div&gt;
-                      &lt;Icon className="h-5 w-5 text-purple-100" /&gt;
-                    &lt;/div&gt;
-                  &lt;/button&gt;
-                ))}
-              &lt;/div&gt;
-            &lt;/section&gt;
+  purify: () =&gt; {
+    const { resources, nodes, addEvent } = get();
 &nbsp;
-            &lt;section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden"&gt;
-              &lt;div className="flex items-center gap-3 mb-4"&gt;
-                &lt;Crown className="h-5 w-5 text-amber-300" /&gt;
-                &lt;p className="uppercase text-xs tracking-[0.3em] text-amber-200/80"&gt;Fruiting &amp; Evolution&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div className="flex items-center justify-between mb-3"&gt;
-                &lt;div&gt;
-                  &lt;p className="text-xs uppercase text-slate-300"&gt;Prestige Level&lt;/p&gt;
-                  &lt;p className="text-2xl font-semibold text-amber-100"&gt;{prestigeLevel}&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;button
-                  onClick={prestige}
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400/80 to-purple-400/70 text-soil-900 font-semibold shadow hover:shadow-lg transition disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-soil-900"
-                  disabled={resources.sugar &lt; 380 || nodes.filter(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; <span class="cstat-no" title="statement not covered" >node.discovered)</span>.length &lt; 6}
-                &gt;
-                  Trigger Fruiting
-                &lt;/button&gt;
-              &lt;/div&gt;
-              &lt;p className="text-xs text-slate-300 mb-3"&gt;
-                Reset the network for spores. Requires 380 sugar and at least six discovered nodes. Upgrades persist.
-              &lt;/p&gt;
-              &lt;div className="grid grid-cols-1 gap-3"&gt;
-                {prestigeUpgrades.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {
-                  const owned = <span class="cstat-no" title="statement not covered" >purchasedUpgrades.includes(item.id);</span>
-                  const affordable = <span class="cstat-no" title="statement not covered" >resources.spores &gt;= item.cost;</span>
-<span class="cstat-no" title="statement not covered" >                  return (</span>
-                    &lt;div
-                      key={item.id}
-                      className="rounded-2xl border border-slate-800/60 bg-slate-900/60 p-3 space-y-2"
-                    &gt;
-                      &lt;div className="flex items-start justify-between gap-3"&gt;
-                        &lt;div&gt;
-                          &lt;p className="font-semibold text-slate-50"&gt;{item.name}&lt;/p&gt;
-                          &lt;p className="text-xs text-slate-300"&gt;{item.description}&lt;/p&gt;
-                        &lt;/div&gt;
-                        &lt;div className="text-xs px-2 py-1 rounded-full border border-slate-700/60 text-amber-200 bg-amber-500/10"&gt;
-                          {owned ? "Integrated" : `${item.cost} spores`}
-                        &lt;/div&gt;
-                      &lt;/div&gt;
-                      &lt;button
-                        onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >p</span>urchaseUpgrade(item.id)}</span>
-                        disabled={owned || !affordable}
-                        className="text-sm font-semibold px-3 py-2 rounded-xl border border-amber-400/40 text-amber-100 bg-amber-500/10 hover:bg-amber-400/20 transition disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-                      &gt;
-                        {owned ? "Locked In" : "Weave Upgrade"}
-                      &lt;/button&gt;
-                    &lt;/div&gt;
-                  );
-                })}
-              &lt;/div&gt;
-            &lt;/section&gt;
+    const toxicNode = nodes.find((node) =&gt; node.type === "toxic" &amp;&amp; node.discovered &amp;&amp; !node.purified);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!toxicNode) {
+<span class="cstat-no" title="statement not covered" >      addEvent("No corrupted soil currently threatens the network.");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
 &nbsp;
-            &lt;section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden"&gt;
-              &lt;div className="flex items-center gap-3 mb-3"&gt;
-                &lt;Sparkles className="h-5 w-5 text-amber-300" /&gt;
-                &lt;p className="uppercase text-xs tracking-[0.3em] text-amber-200/80"&gt;Events&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;ul
-                role="log"
-                aria-live="polite"
-                aria-relevant="additions"
-                className="space-y-2 text-sm text-slate-200"
-              &gt;
-                {events.map(<span class="fstat-no" title="function not covered" >(e</span>vent, index) =&gt; (
-<span class="cstat-no" title="statement not covered" >                  &lt;li key={index} className="flex items-start gap-2"&gt;</span>
-                    &lt;span className="h-2 w-2 mt-2 rounded-full bg-purple-400 shadow-[0_0_10px_rgba(124,58,237,0.65)]" /&gt;
-                    &lt;span&gt;{event}&lt;/span&gt;
-                  &lt;/li&gt;
-                ))}
-              &lt;/ul&gt;
-            &lt;/section&gt;
-          &lt;/div&gt;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (resources.sugar &lt; 110 || resources.spores &lt; 1) {
+<span class="cstat-no" title="statement not covered" >      addEvent("Purification needs 110 sugar and a spore charge.");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
 &nbsp;
-          &lt;div className="space-y-6"&gt;
-            &lt;section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden"&gt;
-              &lt;div className="flex items-center gap-3 mb-4"&gt;
-                &lt;MapIcon className="h-5 w-5 text-purple-300" /&gt;
-                &lt;p className="uppercase text-xs tracking-[0.3em] text-purple-200/80"&gt;Network Map&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div className="rounded-3xl border border-slate-800/60 hyphae-grid relative h-[440px] overflow-hidden"&gt;
-                &lt;svg className="absolute inset-0" viewBox="0 0 100 100" preserveAspectRatio="none"&gt;
-                  {edges.map(<span class="fstat-no" title="function not covered" >(e</span>dge) =&gt; {
-                    const from = <span class="cstat-no" title="statement not covered" >nodeMap[edge.from];</span>
-                    const to = <span class="cstat-no" title="statement not covered" >nodeMap[edge.to];</span>
-<span class="cstat-no" title="statement not covered" >                    if (!from || !to || !from.discovered || !to.discovered) <span class="cstat-no" title="statement not covered" >return null;</span></span>
-                    const opacity = <span class="cstat-no" title="statement not covered" >Math.min(1, 0.25 + edge.strain);</span>
-<span class="cstat-no" title="statement not covered" >                    return (</span>
-                      &lt;line
-                        key={edge.id}
-                        x1={from.position.x}
-                        y1={from.position.y}
-                        x2={to.position.x}
-                        y2={to.position.y}
-                        stroke={edge.strain &gt; 1 ? "#fb7185" : "url(#hyphae)"}
-                        strokeWidth={Math.max(0.75, Math.min(2.4, edge.capacity / 28))}
-                        opacity={opacity}
-                        strokeLinecap="round"
-                        filter="url(#glow)"
-                      /&gt;
-                    );
-                  })}
-                  &lt;defs&gt;
-                    &lt;linearGradient id="hyphae" x1="0%" y1="0%" x2="100%" y2="100%"&gt;
-                      &lt;stop offset="0%" stopColor="#7c3aed" stopOpacity="0.9" /&gt;
-                      &lt;stop offset="100%" stopColor="#22d3ee" stopOpacity="0.9" /&gt;
-                    &lt;/linearGradient&gt;
-                    &lt;filter id="glow"&gt;
-                      &lt;feGaussianBlur stdDeviation="0.8" result="coloredBlur" /&gt;
-                      &lt;feMerge&gt;
-                        &lt;feMergeNode in="coloredBlur" /&gt;
-                        &lt;feMergeNode in="coloredBlur" /&gt;
-                        &lt;feMergeNode in="SourceGraphic" /&gt;
-                      &lt;/feMerge&gt;
-                    &lt;/filter&gt;
-                  &lt;/defs&gt;
-                &lt;/svg&gt;
+    set((state) =&gt; ({
+      resources: { ...state.resources, sugar: state.resources.sugar - 110, spores: Math.max(0, state.resources.spores - 1) },
+      nodes: state.nodes.map((node) =&gt; (node.id === toxicNode.id ? { ...node, purified: true } : node)),
+    }));
+    addEvent(`${toxicNode.name} neutralized with enzyme wash.`);
+  },
 &nbsp;
-                {discoveredNodes.map(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; {
-                  const colorMap: Record&lt;NodeType, string&gt; = <span class="cstat-no" title="statement not covered" >{</span>
-                    heart: "from-purple-500 to-indigo-500",
-                    junction: "from-slate-200 to-purple-200",
-                    water: "from-cyan-400 to-sky-400",
-                    carbon: "from-slate-300 to-slate-100",
-                    nutrient: "from-lime-400 to-amber-300",
-                    ancient: "from-amber-400 to-purple-300",
-                    artery: "from-purple-300 to-cyan-200",
-                    enzyme: "from-emerald-300 to-lime-300",
-                    spore: "from-amber-300 to-rose-200",
-                    toxic: node.purified ? "from-emerald-400 to-cyan-400" : "from-rose-500 to-amber-500",
-                    rival: "from-slate-200 to-red-300",
-                    spring: "from-cyan-300 to-emerald-300",
-                  };
+  prestige: () =&gt; {
+    const { resources, nodes, flowRate, purchasedUpgrades, addEvent, resetNetwork } = get();
 &nbsp;
-                  const pulse = <span class="cstat-no" title="statement not covered" >node.type === "heart" ? "animate-pulse" : "";</span>
+    const discoveredCount = nodes.filter((node) =&gt; node.discovered).length;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (discoveredCount &lt; 6) {
+<span class="cstat-no" title="statement not covered" >      addEvent("The network is too small to fruit.");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (resources.sugar &lt; 380) {
+<span class="cstat-no" title="statement not covered" >      addEvent("Fruiting needs 380 sugar to gather strength.");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                  return (</span>
-                    &lt;div
-                      key={node.id}
-                      className={`absolute -translate-x-1/2 -translate-y-1/2 select-none`}
-                      style={{ left: `${node.position.x}%`, top: `${node.position.y}%` }}
-                    &gt;
-                      &lt;div
-                        className={`relative rounded-full px-3 py-2 bg-gradient-to-r ${colorMap[node.type]} text-soil-900 shadow-lg ${pulse}`}
-                      &gt;
-                        &lt;p className="text-xs font-semibold"&gt;{node.name}&lt;/p&gt;
-                        &lt;p className="text-[11px] text-soil-800/80"&gt;LV {node.upgradeLevel + 1}&lt;/p&gt;
-                        {node.type === "toxic" &amp;&amp; !node.purified &amp;&amp; (
-                          &lt;div className="absolute -right-2 -top-2 bg-amber-400 text-soil-900 text-[10px] font-bold px-2 py-1 rounded-full shadow"&gt;
-                            Toxic
-                          &lt;/div&gt;
-                        )}
-                      &lt;/div&gt;
-                    &lt;/div&gt;
-                  );
-                })}
-              &lt;/div&gt;
-              &lt;div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 text-sm text-slate-200"&gt;
-                &lt;div className="p-3 rounded-2xl border border-slate-800/60 bg-slate-900/60"&gt;
-                  &lt;p className="text-xs uppercase tracking-[0.28em] text-purple-200/80"&gt;Flow&lt;/p&gt;
-                  &lt;p className="text-lg font-semibold text-purple-50"&gt;{format(flowRate)} /s&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div className="p-3 rounded-2xl border border-slate-800/60 bg-slate-900/60"&gt;
-                  &lt;p className="text-xs uppercase tracking-[0.28em] text-cyan-200/80"&gt;Clog Risk&lt;/p&gt;
-                  &lt;p className="text-lg font-semibold text-amber-100"&gt;{cloggedEdges.length} branches&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div className="p-3 rounded-2xl border border-slate-800/60 bg-slate-900/60"&gt;
-                  &lt;p className="text-xs uppercase tracking-[0.28em] text-lime-200/80"&gt;Maintenance&lt;/p&gt;
-                  &lt;p className="text-lg font-semibold text-lime-50"&gt;-{format(edges.length * 0.35)} sugar&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div className="p-3 rounded-2xl border border-slate-800/60 bg-slate-900/60"&gt;
-                  &lt;p className="text-xs uppercase tracking-[0.28em] text-slate-200/80"&gt;Pulse&lt;/p&gt;
-                  &lt;p className="text-lg font-semibold text-slate-50"&gt;{format(networkPulse)} /s&lt;/p&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/section&gt;
+    const purchased = new Set(purchasedUpgrades);
+    const sporeBonus = purchased.has("spore-alchemy") ? <span class="branch-0 cbranch-no" title="branch not covered" >1.3 : 1</span>;
 &nbsp;
-            &lt;section className="blur-card rounded-3xl p-5 backdrop-blur-sm panel-sheen relative overflow-hidden"&gt;
-              &lt;div className="flex items-center gap-3 mb-4"&gt;
-                &lt;BadgeCheck className="h-5 w-5 text-lime-300" /&gt;
-                &lt;p className="uppercase text-xs tracking-[0.3em] text-lime-200/80"&gt;Active Nodes&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"&gt;
-                {discoveredNodes.map(<span class="fstat-no" title="function not covered" >(n</span>ode) =&gt; (
-<span class="cstat-no" title="statement not covered" >                  &lt;div key={node.id} className="rounded-2xl border border-slate-800/60 bg-slate-900/50 p-4 space-y-2"&gt;</span>
-                    &lt;div className="flex items-center justify-between"&gt;
-                      &lt;p className="font-semibold text-slate-50"&gt;{node.name}&lt;/p&gt;
-                      &lt;span className="text-xs px-2 py-1 rounded-full bg-white/5 border border-slate-700/60 text-slate-200"&gt;
-                        LV {node.upgradeLevel + 1}
-                      &lt;/span&gt;
-                    &lt;/div&gt;
-                    &lt;p className="text-xs text-slate-400 min-h-[40px]"&gt;{node.description}&lt;/p&gt;
-                    &lt;div className="flex items-center gap-2 text-xs text-slate-200"&gt;
-                      {node.type === "toxic" &amp;&amp; !node.purified ? (
-                        &lt;div className="flex items-center gap-1 text-amber-200"&gt;
-                          &lt;AlertTriangle className="h-4 w-4" /&gt;
-                          &lt;span&gt;Corroding hyphae&lt;/span&gt;
-                        &lt;/div&gt;
-                      ) : (
-                        &lt;div className="flex items-center gap-1 text-lime-200"&gt;
-                          &lt;Flame className="h-4 w-4" /&gt;
-                          &lt;span&gt;Flow stable&lt;/span&gt;
-                        &lt;/div&gt;
-                      )}
-                    &lt;/div&gt;
-                  &lt;/div&gt;
-                ))}
-              &lt;/div&gt;
-            &lt;/section&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-}
+    const sporeGain = Math.max(
+      2,
+      Math.round((discoveredCount * 0.9 + flowRate * 0.8 + resources.sugar / 90) * sporeBonus),
+    );
 &nbsp;
-export default App;
+    resetNetwork(resources.spores + sporeGain);
+    set((state) =&gt; ({ prestigeLevel: state.prestigeLevel + 1 }));
+    addEvent(`Fruiting body rises, scattering ${format(sporeGain)} spores into memory.`);
+  },
+&nbsp;
+  purchaseUpgrade: (id) =&gt; {
+    const { resources, purchasedUpgrades, addEvent } = get();
+    const upgrade = prestigeUpgrades.find((entry) =&gt; entry.id === id);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!upgrade) <span class="cstat-no" title="statement not covered" >return;</span>
+&nbsp;
+    if (purchasedUpgrades.includes(id)) {
+      addEvent(`${upgrade.name} already woven through the hyphae.`);
+      return;
+    }
+    if (resources.spores &lt; upgrade.cost) {
+      addEvent("Not enough spores to weave this trait.");
+      return;
+    }
+&nbsp;
+    set((state) =&gt; ({
+      resources: { ...state.resources, spores: state.resources.spores - upgrade.cost },
+      purchasedUpgrades: [...state.purchasedUpgrades, id],
+    }));
+    addEvent(`${upgrade.name} woven into the lineage.`);
+  },
+&nbsp;
+  resetNetwork: (sporeGain) =&gt; {
+    set({
+      nodes: initialNodes.map((node) =&gt; ({ ...node })),
+      edges: initialEdges.map((edge) =&gt; ({ ...edge, strain: 0 })),
+      generatedNodes: 0,
+      resources: { ...initialResources, spores: sporeGain },
+    });
+  },
+}));
+&nbsp;
+export { prestigeUpgrades };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -1383,14 +1887,14 @@ export default App;
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2026-01-08T13:49:00.563Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

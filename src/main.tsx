@@ -1,12 +1,10 @@
-// eslint-disable-next-line simple-import-sort/imports
-import { StrictMode } from "react";
-// eslint-disable-next-line simple-import-sort/imports
+/* eslint-disable simple-import-sort/imports */
 import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
 
-// eslint-disable-next-line simple-import-sort/imports
 import App from "./App";
-// eslint-disable-next-line simple-import-sort/imports
 import "./index.css";
+/* eslint-enable simple-import-sort/imports */
 
 /**
  * Entry point for the Mycelial Empire application.

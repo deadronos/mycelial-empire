@@ -50,7 +50,7 @@ export default defineConfig([
         ...globals.es2021,
       },
       parserOptions: {
-        project: ["./tsconfig.eslint.json"],
+        projectService: true,
         tsconfigRootDir: __dirname,
         ecmaFeatures: { jsx: true },
       },
@@ -121,7 +121,7 @@ export default defineConfig([
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: ["./tsconfig.eslint.json"],
+        projectService: true,
         tsconfigRootDir: __dirname,
       },
       globals: {

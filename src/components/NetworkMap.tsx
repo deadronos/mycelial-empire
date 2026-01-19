@@ -1,6 +1,7 @@
 import { Map as MapIcon } from "lucide-react";
-import { format, useGameStore } from "@/store/gameStore";
 import { useMemo } from "react";
+
+import { format, useGameStore } from "@/store/gameStore";
 import { getNodeGradient } from "@/utils/uiConstants";
 
 export const NetworkMap = () => {

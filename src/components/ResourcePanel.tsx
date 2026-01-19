@@ -1,7 +1,8 @@
 import { Activity } from "lucide-react";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { format, useGameStore } from "@/store/gameStore";
 import { resourceCopy, resourceOrder } from "@/utils/uiConstants";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const ResourcePanel = () => {
   const { resources, pulse } = useGameStore();

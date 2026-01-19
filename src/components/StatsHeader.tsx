@@ -1,8 +1,8 @@
 import { Network, ShieldCheck } from "lucide-react";
-import { format, useGameStore } from "@/store/gameStore";
 import { useMemo } from "react";
-import { isEdgeActive } from "@/utils/gameLogic";
-import { calculatePrestigeEffects } from "@/utils/gameLogic";
+
+import { format, useGameStore } from "@/store/gameStore";
+import { calculatePrestigeEffects, isEdgeActive } from "@/utils/gameLogic";
 
 export const StatsHeader = () => {
   const { flowRate, nodes, edges, purchasedUpgrades } = useGameStore();

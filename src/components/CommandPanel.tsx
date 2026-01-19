@@ -1,6 +1,7 @@
 import { ArrowUpCircle, Map as MapIcon, ShieldCheck, TestTubeDiagonal } from "lucide-react";
-import { useGameStore } from "@/store/gameStore";
+
 import { Button } from "@/components/ui/button";
+import { useGameStore } from "@/store/gameStore";
 
 export const CommandPanel = () => {
   const { explore, upgrade, reinforce, purify } = useGameStore();

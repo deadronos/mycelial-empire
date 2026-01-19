@@ -1,19 +1,21 @@
+import { Crown, Zap } from "lucide-react";
 import { useEffect } from "react";
-import { useGameStore } from "./store/gameStore";
-import { StatsHeader } from "./components/StatsHeader";
-import { ResourcePanel } from "./components/ResourcePanel";
-import { CommandPanel } from "./components/CommandPanel";
-import { EvolutionPanel } from "./components/EvolutionPanel";
-import { NetworkMap } from "./components/NetworkMap";
-import { EventLog } from "./components/EventLog";
-import { NodeList } from "./components/NodeList";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Zap, Crown } from "lucide-react";
+
+import { CommandPanel } from "./components/CommandPanel";
+import { EventLog } from "./components/EventLog";
+import { EvolutionPanel } from "./components/EvolutionPanel";
+import { NetworkMap } from "./components/NetworkMap";
+import { NodeList } from "./components/NodeList";
+import { ResourcePanel } from "./components/ResourcePanel";
+import { StatsHeader } from "./components/StatsHeader";
+import { useGameStore } from "./store/gameStore";
 
 /**
  * The main application component for Mycelial Empire.

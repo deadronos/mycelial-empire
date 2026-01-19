@@ -1,7 +1,8 @@
 import { Sparkles } from "lucide-react";
-import { useGameStore } from "@/store/gameStore";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useGameStore } from "@/store/gameStore";
 
 export const EventLog = () => {
   const { events } = useGameStore();

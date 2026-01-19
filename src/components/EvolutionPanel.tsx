@@ -1,6 +1,6 @@
-import { useGameStore, prestigeUpgrades } from "@/store/gameStore";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { prestigeUpgrades, useGameStore } from "@/store/gameStore";
 
 export const EvolutionPanel = () => {
   const { resources, prestigeLevel, purchasedUpgrades, nodes, prestige, purchaseUpgrade } = useGameStore();

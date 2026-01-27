@@ -1,11 +1,17 @@
 import { Activity } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { type Resources } from "@/types/game";
-import { resourceCopy, resourceOrder } from "@/utils/uiConstants";
+
+interface FormattedResource {
+  key: string;
+  formattedValue: string;
+  icon: React.ReactNode;
+  label: string;
+  color: string;
+}
 
 interface ResourcePanelPresentationalProps {
-  resources: Resources;
+  resources: FormattedResource[];
   pulseDisplay: string;
 }
 
@@ -19,17 +25,17 @@ export const ResourcePanelPresentational = ({ resources, pulseDisplay }: Resourc
     </CardHeader>
     <CardContent className="px-3 pb-3">
       <div className="grid grid-cols-2 gap-2">
-        {resourceOrder.map((key) => (
+        {resources.map(({ key, formattedValue, icon, label, color }) => (
           <div
             key={key}
             className="border border-white/5 rounded-lg px-2 py-1.5 bg-black/20 flex flex-col gap-0.5 shadow-sm"
           >
             <div className="flex items-center gap-1.5 text-[9px] text-slate-400">
-              {resourceCopy[key].icon}
-              <span className="uppercase tracking-wider">{resourceCopy[key].label}</span>
+              {icon}
+              <span className="uppercase tracking-wider">{label}</span>
             </div>
-            <p className={`text-base font-semibold ${resourceCopy[key].color}`}>
-              {format(resources[key])}
+            <p className={`text-base font-semibold ${color}`}>
+              {formattedValue}
             </p>
           </div>
         ))}

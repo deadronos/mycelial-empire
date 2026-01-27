@@ -8,13 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { CommandPanel } from "./components/CommandPanel";
-import { EventLog } from "./components/EventLog";
-import { EvolutionPanel } from "./components/EvolutionPanel";
-import { NetworkMap } from "./components/NetworkMap";
-import { NodeList } from "./components/NodeList";
-import { ResourcePanel } from "./components/ResourcePanel";
-import { StatsHeader } from "./components/StatsHeader";
+import { CommandPanel, EventLog, EvolutionPanel, NetworkMap, NodeList, ResourcePanel, StatsHeader } from "./components/container";
 import { useGameStore } from "./store/gameStore";
 
 /**

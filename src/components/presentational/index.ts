@@ -1,4 +1,4 @@
 // Presentational components - pure UI components
-export { ResourcePanelPresentational } from "./ResourcePanelPresentational";
 export { EventLogPresentational } from "./EventLogPresentational";
+export { ResourcePanelPresentational } from "./ResourcePanelPresentational";
 // export { ComponentName } from "./ComponentName";

@@ -1,4 +1,5 @@
 import { useGameStore } from "@/store/gameStore";
+
 import { EventLogPresentational } from "../presentational/EventLogPresentational";
 
 export const EventLog = () => {

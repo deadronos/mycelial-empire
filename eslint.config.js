@@ -108,6 +108,12 @@ export default defineConfig([
     },
   },
   {
+    files: ["src/components/ui/**"],
+    rules: {
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true, allowExportNames: ['badgeVariants', 'buttonVariants'] }],
+    },
+  },
+  {
     files: [
       "**/*.{test,spec}.{ts,tsx,js,jsx}",
       "tests/**/*.{test,spec}.{ts,tsx,js,jsx}",

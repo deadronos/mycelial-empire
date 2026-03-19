@@ -2,7 +2,7 @@
 
 ## Current Focus
 
-The primary focus right now is finishing the foundational `/memory` docs (project brief, product context, system patterns, tech context, active/progress logs) so future agents have a complete onboarding path. These docs reference the mission and architecture that AGENTS.md introduced earlier.
+The project is being maintained by upgrading dependencies to their latest versions (React 19, Vite 8, Vitest 4) and ensuring the environment (linting, typechecking, tests, build) remains stable.
 
 ## Recent Changes
 

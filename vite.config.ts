@@ -24,6 +24,7 @@ export default defineConfig(() => {
     base,
     plugins: [react(), tailwindcss()],
     resolve: {
+      tsconfigPaths: true,
       alias: {
         "@": path.resolve(__dirname, "src"),
       },

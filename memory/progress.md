@@ -17,7 +17,7 @@
 ## Known Issues & Risks
 
 - Real-time synchronization between store updates and Miniplex entities must stay deterministic—any change to IDs or ordering can break transitions.
-- Without CI or automated tests, changes rely on manual validation (`npm run dev`) and thorough toasts/messages.
+- Automated tests (Vitest) and linting (ESLint) are in place, but should be integrated into a CI pipeline for better reliability.
 - Memory docs (`/memory`) can become stale if not touched alongside code updates; regular reviews are necessary.
 
 ## Confidence & Notes

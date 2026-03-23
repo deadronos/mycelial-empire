@@ -180,3 +180,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes strained-pulse {
+  0%, 100% { opacity: 0.8; stroke-width: 2.4px; }
+  50% { opacity: 1; stroke-width: 3.2px; }
+}
+
+.strained {
+  animation: strained-pulse 0.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 4px #fb7185) !important;
+}

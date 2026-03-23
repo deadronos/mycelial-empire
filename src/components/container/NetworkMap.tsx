@@ -4,6 +4,10 @@ import { useMemo } from "react";
 import { format, useGameStore } from "@/store/gameStore";
 import { getNodeGradient } from "@/utils/uiConstants";
 
+/**
+ * Renders the mycelial network map with nodes and edges.
+ * Displays resource flow and visual feedback for edge strain.
+ */
 export const NetworkMap = () => {
   const { nodes, edges, flowRate } = useGameStore();
 
@@ -30,7 +34,11 @@ export const NetworkMap = () => {
             const from = nodeMap[edge.from];
             const to = nodeMap[edge.to];
             if (!from || !to || !from.discovered || !to.discovered) return null;
+
+            const isStrained = edge.strain > 1.0;
             const opacity = Math.min(1, 0.25 + edge.strain);
+            const strokeWidth = Math.max(0.75, Math.min(2.4, edge.capacity / 28));
+
             return (
               <line
                 key={edge.id}
@@ -38,9 +46,10 @@ export const NetworkMap = () => {
                 y1={from.position.y}
                 x2={to.position.x}
                 y2={to.position.y}
-                stroke={edge.strain > 1 ? "#fb7185" : "url(#hyphae)"}
-                strokeWidth={Math.max(0.75, Math.min(2.4, edge.capacity / 28))}
+                stroke={isStrained ? "#fb7185" : "url(#hyphae)"}
+                strokeWidth={strokeWidth}
                 opacity={opacity}
+                className={isStrained ? "strained" : ""}
                 strokeLinecap="round"
                 filter="url(#glow)"
               />
@@ -69,7 +78,7 @@ export const NetworkMap = () => {
           return (
             <div
               key={node.id}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 select-none z-10`}
+              className="absolute -translate-x-1/2 -translate-y-1/2 select-none z-10"
               style={{ left: `${node.position.x}%`, top: `${node.position.y}%` }}
             >
               <div

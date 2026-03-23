@@ -1,7 +1,15 @@
 import { create } from "zustand";
 
 import type { Edge, Node, PrestigeUpgrade, ResourceKey, Resources } from "../types/game";
-import { calculateNodeYield, calculatePrestigeEffects, isEdgeActive } from "../utils/gameLogic";
+import { COSTS, MAINTENANCE, REWARDS, SCALING } from "../utils/constants";
+import {
+  calculateAllDiscoveredYields,
+  calculateEdgesWithStrain,
+  calculatePrestigeEffects,
+  calculateResourceAccumulation,
+  isEdgeActive,
+  performResourceProcessing,
+} from "../utils/gameLogic";
 
 interface GameState {
   resources: Resources;
@@ -308,76 +316,48 @@ export const useGameStore = create<GameState>((set, get) => ({
     // Calculate prestige effects
     const prestigeEffects = calculatePrestigeEffects(purchasedUpgrades);
 
-    const nodeMap = Object.fromEntries(nodes.map((node) => [node.id, node]));
+    // Pre-calculate all node yields
+    const nodeYields = calculateAllDiscoveredYields(nodes, prestigeEffects.resourceYield);
+    const discoveredNodes = nodes.filter((n) => n.discovered);
+    const nodeMap = Object.fromEntries(nodes.map((n) => [n.id, n]));
 
     set((state) => {
-      const updatedResources = { ...state.resources };
-      let sugarGain = 0;
-      let flow = 0;
+      // 1. Resource Accumulation
+      const { gains, flow } = calculateResourceAccumulation(discoveredNodes, nodeYields, prestigeEffects);
 
-      // Resource Accumulation
-      nodes.forEach((node) => {
-        if (!node.discovered) return;
-        const yieldValues = calculateNodeYield(node, prestigeEffects.resourceYield);
-        Object.entries(yieldValues).forEach(([key, value]) => {
-          if (key === "sugar") {
-            sugarGain += value ?? 0;
-          } else {
-            const resourceKey = key as Exclude<ResourceKey, "sugar">;
-            updatedResources[resourceKey] += value ?? 0;
-          }
-          flow += value ?? 0;
-        });
-
-        if (node.type === "ancient") {
-          updatedResources.spores += 0.15 * prestigeEffects.sporeBonus;
-          sugarGain += 1.3;
-        }
-        if (node.type === "spore") {
-          updatedResources.spores += 0.25 * prestigeEffects.sporeBonus;
-          sugarGain += 1.1;
-        }
-        if (node.type === "enzyme") {
-          sugarGain += 0.4;
-        }
-        if (node.type === "rival") {
-          sugarGain -= 1.5;
-        }
-        if (node.type === "toxic" && !node.purified) {
-          sugarGain -= 1.1 * prestigeEffects.toxinMitigation;
+      const intermediateResources = { ...state.resources };
+      Object.entries(gains).forEach(([key, value]) => {
+        const resourceKey = key as ResourceKey;
+        if (resourceKey !== "sugar") {
+          intermediateResources[resourceKey] += value ?? 0;
         }
       });
 
-      // Processing
-      const processingNodes = nodes.filter((node) => node.type === "junction" && node.discovered);
-      const conversionPotential = Math.min(updatedResources.water * 0.08, updatedResources.carbon * 0.08, 6 * processingNodes.length);
-      if (conversionPotential > 0) {
-        updatedResources.water -= conversionPotential * 0.65;
-        updatedResources.carbon -= conversionPotential * 0.65;
-        sugarGain += conversionPotential * (1.35 + processingNodes.length * 0.1) * prestigeEffects.conversionBonus;
-      }
+      // 2. Junction Processing
+      const processingNodesCount = discoveredNodes.filter((n) => n.type === "junction").length;
+      const { updatedResources, sugarGain: processingSugar } = performResourceProcessing(
+        intermediateResources,
+        processingNodesCount,
+        prestigeEffects
+      );
 
-      // Maintenance
-      const activeEdgeCount = edges.filter((edge) => isEdgeActive(edge, nodeMap)).length;
-      const maintenance = activeEdgeCount * 0.35 * (prestigeEffects.edgeCapacity > 1 ? 0.9 : 1);
-      const finalSugar = Math.max(0, updatedResources.sugar + sugarGain - maintenance);
+      // 3. Maintenance
+      const activeEdges = edges.filter((e) => isEdgeActive(e, nodeMap));
+      const maintenance =
+        activeEdges.length *
+        MAINTENANCE.EDGE_BASE_COST *
+        (prestigeEffects.edgeCapacity > 1 ? MAINTENANCE.PRESTIGE_DISCOUNT : 1);
 
-      // Edge Strain Calculation
-      const nextEdges = edges.map((edge) => {
-        const node = nodes.find((entry) => entry.id === edge.to);
-        const fromNode = nodes.find((entry) => entry.id === edge.from);
-        const active = node?.discovered && fromNode?.discovered;
-        const yieldValues = node ? calculateNodeYield(node, prestigeEffects.resourceYield) : {};
-        const throughput = Object.values(yieldValues).reduce((sum, value) => sum + (value ?? 0), 0);
-        const toxicity = node?.type === "toxic" && !node.purified ? 0.5 * prestigeEffects.toxinMitigation : 0;
-        const effectiveCapacity = edge.capacity * prestigeEffects.edgeCapacity;
-        const strain = active ? Math.min(1.6, throughput / effectiveCapacity + toxicity) : 0;
-        return { ...edge, strain };
-      });
+      // 4. Final Sugar Balance
+      const totalSugarGain = (gains.sugar || 0) + processingSugar;
+      const finalSugar = Math.max(0, state.resources.sugar + totalSugarGain - maintenance);
+
+      // 5. Edge Strain Calculation
+      const nextEdges = calculateEdgesWithStrain(edges, nodes, nodeYields, prestigeEffects);
 
       return {
         resources: { ...updatedResources, sugar: finalSugar },
-        flowRate: sugarGain - maintenance,
+        flowRate: totalSugarGain - maintenance,
         pulse: flow,
         edges: nextEdges,
       };
@@ -388,7 +368,13 @@ export const useGameStore = create<GameState>((set, get) => ({
     const { resources, nodes, generatedNodes, purchasedUpgrades, addEvent } = get();
 
     const prestigeEffects = calculatePrestigeEffects(purchasedUpgrades);
-    const exploreCost = Math.max(60, 120 * prestigeEffects.exploreDiscount);
+    const discoveredCount = nodes.filter((n) => n.discovered).length;
+
+    // Scaling cost based on empire size
+    const exploreCost = Math.max(
+      60,
+      COSTS.EXPLORE * (SCALING.EXPLORE_EXPONENT ** (discoveredCount - 5)) * prestigeEffects.exploreDiscount
+    );
 
     if (resources.sugar < exploreCost) {
       addEvent(`Not enough sugar to explore deeper soil (${Math.ceil(exploreCost)} needed).`);
@@ -419,9 +405,6 @@ export const useGameStore = create<GameState>((set, get) => ({
     const jitterPosition = (value: number) => Math.min(92, Math.max(8, value + (Math.random() * 18 - 9)));
     const position = { x: jitterPosition(anchor.position.x), y: jitterPosition(anchor.position.y) };
 
-    // Check if tensile-hyphae is active
-    const capacityBoost = prestigeEffects.exploreCapacityBoost;
-
     const newNode: Node = {
       ...template,
       id,
@@ -437,7 +420,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       id: `e-${anchor.id}-${id}-${generatedNodes}`,
       from: anchor.id,
       to: id,
-      capacity: 15 + Math.round(Math.random() * 12) + capacityBoost,
+      capacity: 15 + Math.round(Math.random() * 12) + prestigeEffects.exploreCapacityBoost,
       strain: 0,
       decay: 0.03,
     };
@@ -456,11 +439,6 @@ export const useGameStore = create<GameState>((set, get) => ({
   upgrade: () => {
     const { resources, nodes, addEvent } = get();
 
-    if (resources.sugar < 90) {
-      addEvent("Insufficient sugar to upgrade a node.");
-      return;
-    }
-
     const candidate = nodes.find(
       (node) =>
         node.discovered &&
@@ -473,8 +451,16 @@ export const useGameStore = create<GameState>((set, get) => ({
       return;
     }
 
+    // Scaling cost based on current level
+    const upgradeCost = COSTS.UPGRADE * (SCALING.UPGRADE_EXPONENT ** candidate.upgradeLevel);
+
+    if (resources.sugar < upgradeCost) {
+      addEvent(`Insufficient sugar to upgrade (need ${Math.ceil(upgradeCost)}).`);
+      return;
+    }
+
     set((state) => ({
-      resources: { ...state.resources, sugar: state.resources.sugar - 90 },
+      resources: { ...state.resources, sugar: state.resources.sugar - upgradeCost },
       nodes: state.nodes.map((node) =>
         node.id === candidate.id
           ? { ...node, upgradeLevel: node.upgradeLevel + 1, description: `${node.description} (refined)` }
@@ -487,7 +473,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   reinforce: () => {
     const { resources, edges, addEvent } = get();
 
-    if (resources.sugar < 70) {
+    if (resources.sugar < COSTS.REINFORCE) {
       addEvent("Reinforcement requires more sugar reserves.");
       return;
     }
@@ -496,7 +482,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     if (!target) return;
 
     set((state) => ({
-      resources: { ...state.resources, sugar: state.resources.sugar - 70 },
+      resources: { ...state.resources, sugar: state.resources.sugar - COSTS.REINFORCE },
       edges: state.edges.map((edge) =>
         edge.id === target.id
           ? { ...edge, capacity: edge.capacity + 6, strain: Math.max(0.2, edge.strain - 0.25), reinforced: true }
@@ -515,13 +501,13 @@ export const useGameStore = create<GameState>((set, get) => ({
       return;
     }
 
-    if (resources.sugar < 110 || resources.spores < 1) {
-      addEvent("Purification needs 110 sugar and a spore charge.");
+    if (resources.sugar < COSTS.PURIFY || resources.spores < 1) {
+      addEvent(`Purification needs ${COSTS.PURIFY} sugar and a spore charge.`);
       return;
     }
 
     set((state) => ({
-      resources: { ...state.resources, sugar: state.resources.sugar - 110, spores: Math.max(0, state.resources.spores - 1) },
+      resources: { ...state.resources, sugar: state.resources.sugar - COSTS.PURIFY, spores: Math.max(0, state.resources.spores - 1) },
       nodes: state.nodes.map((node) => (node.id === toxicNode.id ? { ...node, purified: true } : node)),
     }));
     addEvent(`${toxicNode.name} neutralized with enzyme wash.`);
@@ -531,19 +517,24 @@ export const useGameStore = create<GameState>((set, get) => ({
     const { resources, nodes, flowRate, purchasedUpgrades, addEvent, resetNetwork } = get();
 
     const discoveredCount = nodes.filter((node) => node.discovered).length;
-    if (discoveredCount < 6) {
-      addEvent("The network is too small to fruit.");
+    if (discoveredCount < COSTS.PRESTIGE_NODES) {
+      addEvent(`The network is too small to fruit (need ${COSTS.PRESTIGE_NODES} nodes).`);
       return;
     }
-    if (resources.sugar < 380) {
-      addEvent("Fruiting needs 380 sugar to gather strength.");
+    if (resources.sugar < COSTS.PRESTIGE_SUGAR) {
+      addEvent(`Fruiting needs ${COSTS.PRESTIGE_SUGAR} sugar to gather strength.`);
       return;
     }
 
     const prestigeEffects = calculatePrestigeEffects(purchasedUpgrades);
     const sporeGain = Math.max(
-      2,
-      Math.round((discoveredCount * 0.9 + flowRate * 0.8 + resources.sugar / 90) * prestigeEffects.sporeBonus),
+      REWARDS.MIN_SPORE_GAIN,
+      Math.round(
+        (discoveredCount * REWARDS.SPORE_GAIN_NODE_FACTOR +
+         flowRate * REWARDS.SPORE_GAIN_FLOW_FACTOR +
+         resources.sugar / REWARDS.SPORE_GAIN_SUGAR_DIVISOR) *
+        prestigeEffects.sporeBonus
+      ),
     );
 
     resetNetwork(resources.spores + sporeGain);

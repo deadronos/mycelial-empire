@@ -1,15 +1,13 @@
 import { create } from "zustand";
 
 import type { Edge, Node, PrestigeUpgrade, ResourceKey, Resources } from "../types/game";
-import { COSTS, MAINTENANCE, REWARDS, SCALING } from "../utils/constants";
-import {
-  calculateAllDiscoveredYields,
+import { COSTS, MAINTENANCE, REWARDS } from "../utils/constants";
+import { calculateAllDiscoveredYields,
   calculateEdgesWithStrain,
-  calculatePrestigeEffects,
+calculateExploreCost,   calculatePrestigeEffects,
   calculateResourceAccumulation,
-  isEdgeActive,
-  performResourceProcessing,
-} from "../utils/gameLogic";
+calculateUpgradeCost,createNodeMap, getDiscoveredNodes, getDiscoveredNodesCount,   isEdgeActive,
+  performResourceProcessing } from "../utils/gameLogic";
 
 interface GameState {
   resources: Resources;
@@ -318,8 +316,8 @@ export const useGameStore = create<GameState>((set, get) => ({
 
     // Pre-calculate all node yields
     const nodeYields = calculateAllDiscoveredYields(nodes, prestigeEffects.resourceYield);
-    const discoveredNodes = nodes.filter((n) => n.discovered);
-    const nodeMap = Object.fromEntries(nodes.map((n) => [n.id, n]));
+    const discoveredNodes = getDiscoveredNodes(nodes);
+    const nodeMap = createNodeMap(nodes);
 
     set((state) => {
       // 1. Resource Accumulation
@@ -368,13 +366,10 @@ export const useGameStore = create<GameState>((set, get) => ({
     const { resources, nodes, generatedNodes, purchasedUpgrades, addEvent } = get();
 
     const prestigeEffects = calculatePrestigeEffects(purchasedUpgrades);
-    const discoveredCount = nodes.filter((n) => n.discovered).length;
+    const discoveredCount = getDiscoveredNodesCount(nodes);
 
     // Scaling cost based on empire size
-    const exploreCost = Math.max(
-      60,
-      COSTS.EXPLORE * (SCALING.EXPLORE_EXPONENT ** (discoveredCount - 5)) * prestigeEffects.exploreDiscount
-    );
+    const exploreCost = calculateExploreCost(discoveredCount, prestigeEffects.exploreDiscount);
 
     if (resources.sugar < exploreCost) {
       addEvent(`Not enough sugar to explore deeper soil (${Math.ceil(exploreCost)} needed).`);
@@ -452,7 +447,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     }
 
     // Scaling cost based on current level
-    const upgradeCost = COSTS.UPGRADE * (SCALING.UPGRADE_EXPONENT ** candidate.upgradeLevel);
+    const upgradeCost = calculateUpgradeCost(candidate.upgradeLevel);
 
     if (resources.sugar < upgradeCost) {
       addEvent(`Insufficient sugar to upgrade (need ${Math.ceil(upgradeCost)}).`);
@@ -516,7 +511,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   prestige: () => {
     const { resources, nodes, flowRate, purchasedUpgrades, addEvent, resetNetwork } = get();
 
-    const discoveredCount = nodes.filter((node) => node.discovered).length;
+    const discoveredCount = getDiscoveredNodesCount(nodes);
     if (discoveredCount < COSTS.PRESTIGE_NODES) {
       addEvent(`The network is too small to fruit (need ${COSTS.PRESTIGE_NODES} nodes).`);
       return;

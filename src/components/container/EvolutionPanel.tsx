@@ -1,11 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { prestigeUpgrades, useGameStore } from "@/store/gameStore";
+import { getDiscoveredNodesCount } from "@/utils/gameLogic";
 
 export const EvolutionPanel = () => {
   const { resources, prestigeLevel, purchasedUpgrades, nodes, prestige, purchaseUpgrade } = useGameStore();
 
-  const discoveredCount = nodes.filter((n) => n.discovered).length;
+  const discoveredCount = getDiscoveredNodesCount(nodes);
   const canPrestige = resources.sugar >= 380 && discoveredCount >= 6;
 
   return (

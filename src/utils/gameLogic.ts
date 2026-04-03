@@ -1,5 +1,5 @@
 import type { Edge, Node, ResourceKey, Resources } from "../types/game";
-import { CONVERSION, MAINTENANCE } from "./constants";
+import { CONVERSION, COSTS, MAINTENANCE, SCALING } from "./constants";
 
 /**
  * Calculates the various game effects based on the list of purchased prestige upgrades.
@@ -210,4 +210,92 @@ export const isEdgeActive = (
   const from = nodeMap[edge.from];
   const to = nodeMap[edge.to];
   return !!(from?.discovered && to?.discovered);
+};
+
+/**
+ * Returns an array of nodes that have been discovered.
+ *
+ * @param nodes - Array of all nodes.
+ * @returns Array of discovered nodes.
+ */
+export const getDiscoveredNodes = (nodes: Node[]): Node[] => {
+  return nodes.filter((node) => node.discovered);
+};
+
+/**
+ * Returns the count of discovered nodes.
+ *
+ * @param nodes - Array of all nodes.
+ * @returns Number of discovered nodes.
+ */
+export const getDiscoveredNodesCount = (nodes: Node[]): number => {
+  return getDiscoveredNodes(nodes).length;
+};
+
+/**
+ * Creates a map of node IDs to Node objects for faster lookups.
+ *
+ * @param nodes - Array of nodes.
+ * @returns A dictionary mapping node IDs to Node objects.
+ */
+export const createNodeMap = (nodes: Node[]): Record<string, Node> => {
+  return Object.fromEntries(nodes.map((node) => [node.id, node]));
+};
+
+/**
+ * Calculates the cost of exploring a new node.
+ *
+ * @param discoveredCount - Number of currently discovered nodes.
+ * @param exploreDiscount - Discount multiplier from prestige effects.
+ * @returns The calculated sugar cost for exploration.
+ */
+export const calculateExploreCost = (
+  discoveredCount: number,
+  exploreDiscount: number
+): number => {
+  return Math.max(
+    60,
+    COSTS.EXPLORE * (SCALING.EXPLORE_EXPONENT ** (discoveredCount - 5)) * exploreDiscount
+  );
+};
+
+/**
+ * Calculates the cost of upgrading a node.
+ *
+ * @param upgradeLevel - The current upgrade level of the node.
+ * @returns The calculated sugar cost for the upgrade.
+ */
+export const calculateUpgradeCost = (upgradeLevel: number): number => {
+  return COSTS.UPGRADE * (SCALING.UPGRADE_EXPONENT ** upgradeLevel);
+};
+
+/**
+ * Calculates the overall health percentage of the network.
+ *
+ * @param edges - Array of all game edges.
+ * @param nodes - Array of all game nodes.
+ * @param toxinMitigation - Multiplier for toxin penalties from prestige effects.
+ * @param nodeMap - Map of node IDs to Node objects.
+ * @returns The network health percentage as a number.
+ */
+export const calculateNetworkHealth = (
+  edges: Edge[],
+  nodes: Node[],
+  toxinMitigation: number,
+  nodeMap: Record<string, Node>
+): number => {
+  const cloggedEdges = edges.filter((edge) => edge.strain > 1 && isEdgeActive(edge, nodeMap));
+
+  const strainPenalty = Math.min(
+    35,
+    cloggedEdges.length * 6 + edges.reduce((sum, edge) => sum + edge.strain * 4, 0) / 8,
+  );
+
+  const toxinPenalty = nodes.some((node) => node.type === "toxic" && node.discovered && !node.purified)
+    ? 12 * toxinMitigation
+    : 0;
+
+  const rivalPenalty = nodes.some((node) => node.type === "rival" && node.discovered) ? 4 : 0;
+
+  return Math.max(18, 100 - strainPenalty - toxinPenalty - rivalPenalty);
 };

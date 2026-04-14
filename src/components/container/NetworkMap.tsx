@@ -2,6 +2,7 @@ import { Map as MapIcon } from "lucide-react";
 import { useMemo } from "react";
 
 import { format, useGameStore } from "@/store/gameStore";
+import { createNodeMap,getDiscoveredNodes } from "@/utils/gameLogic";
 import { getNodeGradient } from "@/utils/uiConstants";
 
 /**
@@ -11,8 +12,8 @@ import { getNodeGradient } from "@/utils/uiConstants";
 export const NetworkMap = () => {
   const { nodes, edges, flowRate } = useGameStore();
 
-  const nodeMap = useMemo(() => Object.fromEntries(nodes.map((node) => [node.id, node])), [nodes]);
-  const discoveredNodes = nodes.filter((node) => node.discovered);
+  const nodeMap = useMemo(() => createNodeMap(nodes), [nodes]);
+  const discoveredNodes = getDiscoveredNodes(nodes);
 
   return (
     <div className="flex flex-col h-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden relative">
